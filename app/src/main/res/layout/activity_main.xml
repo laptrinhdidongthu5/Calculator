@@ -61,7 +61,7 @@
         tools:text="f00d" />
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/keyboardBasic"
         android:layout_width="280dp"
         android:layout_height="400dp"
         android:layout_marginTop="8dp"
@@ -200,16 +200,159 @@
     </TableLayout>
 
     <Button
+        android:id="@+id/btn_arrow_left"
+        android:layout_width="40dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/fontawasome"
+        android:onClick="onKeyboeardAdvanced"
+        android:text="\uf0d9"
+        app:layout_constraintStart_toEndOf="@+id/keyboardBasic"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
         android:id="@+id/btn_arrow_right"
         android:layout_width="40dp"
         android:layout_height="400dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="188dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/fontawasome"
-        android:text="\uf0d9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tableLayout"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:onClick="onKeyboeardBasic"
+        android:text="\uf0da"
+        app:layout_constraintStart_toEndOf="@+id/btn_arrow_left"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TableLayout
+        android:id="@+id/keyboardAdvanced1"
+        android:layout_width="280dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_arrow_right"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_pow"
+                android:layout_width="140dp"
+                android:layout_height="80dp"
+                android:fontFamily="@font/fontawasome"
+                android:text="\uf12b" />
+
+            <Button
+                android:id="@+id/btn_square"
+                android:layout_width="140dp"
+                android:layout_height="80dp"
+                android:fontFamily="@font/fontawasome"
+                android:text="\uf698"
+                tools:layout_editor_absoluteX="355dp"
+                tools:layout_editor_absoluteY="398dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_max"
+                android:layout_width="140dp"
+                android:layout_height="80dp"
+                android:text="max" />
+
+            <Button
+                android:id="@+id/btn_min"
+                android:layout_width="140dp"
+                android:layout_height="80dp"
+                android:text="min"
+                tools:layout_editor_absoluteX="358dp"
+                tools:layout_editor_absoluteY="443dp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/keyboardAdvanced2"
+        android:layout_width="280dp"
+        android:layout_height="240dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_arrow_right"
+        app:layout_constraintTop_toBottomOf="@+id/keyboardAdvanced1">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_inverse"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="1/x" />
+
+            <Button
+                android:id="@+id/btn_abs"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="|x|" />
+
+            <Button
+                android:id="@+id/btn_mod"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="mod"
+                tools:layout_editor_absoluteX="367dp"
+                tools:layout_editor_absoluteY="565dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_sin"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="sin" />
+
+            <Button
+                android:id="@+id/btn_cos"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="cos" />
+
+            <Button
+                android:id="@+id/btn_tan"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="tan"
+                tools:layout_editor_absoluteX="328dp"
+                tools:layout_editor_absoluteY="581dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_open"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="(" />
+
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text=")" />
+
+            <Button
+                android:id="@+id/btn_pi"
+                android:layout_width="93dp"
+                android:layout_height="80dp"
+                android:text="pi"
+                tools:layout_editor_absoluteX="340dp"
+                tools:layout_editor_absoluteY="631dp" />
+        </TableRow>
+
+    </TableLayout>
 
 </android.support.constraint.ConstraintLayout>
