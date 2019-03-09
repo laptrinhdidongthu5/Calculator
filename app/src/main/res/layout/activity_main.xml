@@ -42,6 +42,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/fontawasome"
+        android:onClick="onClickRemove"
         android:text="\uf55a"
         app:layout_constraintStart_toEndOf="@+id/btn_clearAll"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,6 +53,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="200dp"
         android:fontFamily="@font/fontawasome"
+        android:onClick="onClickDelete"
         android:text="\uf00d"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

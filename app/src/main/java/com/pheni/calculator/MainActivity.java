@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEqual (View view){
-        textCalculator.setText(textCalculator.getText().toString()+"=");
+//        textCalculator.setText(textCalculator.getText().toString()+"=");
     }
 
     public void onClickDot(View view){
@@ -105,6 +105,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickNine(View view){
         textCalculator.setText(textCalculator.getText().toString()+"9");
+    }
+
+    public void onClickRemove(View view){
+        String text = textCalculator.getText().toString();
+        text = text.substring(0, text.length()-1);
+        textCalculator.setText(text);
+    }
+
+    public void onClickDelete(View view){
+        textCalculator.setText("");
     }
 
     @Override
