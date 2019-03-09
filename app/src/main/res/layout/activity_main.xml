@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="170dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="280dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="503dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,23 +19,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_clear">
 
-        <EditText
-            android:id="@+id/editText"
+        <TextView
+            android:id="@+id/textCalculator"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:textSize="24sp" />
+            android:layout_height="80dp"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/result"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="80dp"
             android:text="TextView"
             android:textAlignment="textEnd"
             android:textSize="24sp"
             tools:text="0" />
+
     </LinearLayout>
 
     <Button
@@ -64,7 +61,7 @@
         android:id="@+id/keyboardBasic"
         android:layout_width="280dp"
         android:layout_height="400dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -76,6 +73,7 @@
                 android:id="@+id/btn_seven"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickSeven"
                 android:text="7"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="450dp" />
@@ -84,6 +82,7 @@
                 android:id="@+id/btn_eight"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickEight"
                 android:text="8"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="350dp" />
@@ -92,6 +91,7 @@
                 android:id="@+id/btn_nine"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickNine"
                 android:text="9"
                 tools:layout_editor_absoluteX="161dp"
                 tools:layout_editor_absoluteY="257dp" />
@@ -100,6 +100,7 @@
                 android:id="@+id/btn_div"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickDiv"
                 android:text=":"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="250dp" />
@@ -113,6 +114,7 @@
                 android:id="@+id/btn_four"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickFour"
                 android:text="4"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="550dp" />
@@ -121,18 +123,21 @@
                 android:id="@+id/btn_five"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickFive"
                 android:text="5" />
 
             <Button
                 android:id="@+id/btn_six"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickSix"
                 android:text="6" />
 
             <Button
                 android:id="@+id/btn_mul"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickMul"
                 android:text="x" />
         </TableRow>
 
@@ -144,6 +149,7 @@
                 android:id="@+id/btn_one"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickOne"
                 android:text="1"
                 tools:layout_editor_absoluteX="7dp"
                 tools:layout_editor_absoluteY="487dp" />
@@ -152,18 +158,21 @@
                 android:id="@+id/btn_two"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickTwo"
                 android:text="2" />
 
             <Button
                 android:id="@+id/btn_three"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickThree"
                 android:text="3" />
 
             <Button
                 android:id="@+id/btn_sub"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickSub"
                 android:text="-" />
         </TableRow>
 
@@ -175,6 +184,7 @@
                 android:id="@+id/btn_zero"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickZero"
                 android:text="0"
                 tools:layout_editor_absoluteX="7dp"
                 tools:layout_editor_absoluteY="575dp" />
@@ -183,18 +193,21 @@
                 android:id="@+id/btn_dot"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickDot"
                 android:text="." />
 
             <Button
                 android:id="@+id/btn_equal"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickEqual"
                 android:text="=" />
 
             <Button
                 android:id="@+id/btn_add"
                 android:layout_width="70dp"
                 android:layout_height="100dp"
+                android:onClick="onClickAdd"
                 android:text="+" />
         </TableRow>
     </TableLayout>
@@ -203,7 +216,7 @@
         android:id="@+id/btn_arrow_left"
         android:layout_width="40dp"
         android:layout_height="400dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/fontawasome"
         android:onClick="onKeyboeardAdvanced"
         android:text="\uf0d9"
@@ -214,7 +227,7 @@
         android:id="@+id/btn_arrow_right"
         android:layout_width="40dp"
         android:layout_height="400dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/fontawasome"
         android:onClick="onKeyboeardBasic"
         android:text="\uf0da"
@@ -225,7 +238,7 @@
         android:id="@+id/keyboardAdvanced1"
         android:layout_width="280dp"
         android:layout_height="160dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toEndOf="@+id/btn_arrow_right"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 

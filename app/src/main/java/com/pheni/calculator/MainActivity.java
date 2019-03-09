@@ -3,12 +3,13 @@ package com.pheni.calculator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    public TextView textCalculator;
 
     public void onKeyboeardAdvanced(View view){
 
@@ -42,9 +43,76 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickEqual (View view){
+        textCalculator.setText(textCalculator.getText().toString()+"=");
+    }
+
+    public void onClickDot(View view){
+        textCalculator.setText(textCalculator.getText().toString()+".");
+    }
+
+    public void onClickAdd(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"+");
+    }
+
+    public void onClickSub(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"-");
+    }
+
+    public void onClickMul(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"x");
+    }
+
+    public void onClickDiv(View view){
+        textCalculator.setText(textCalculator.getText().toString()+":");
+    }
+
+    public void onClickZero(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"0");
+    }
+
+    public void onClickOne(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"1");
+    }
+
+    public void onClickTwo(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"2");
+    }
+
+    public void onClickThree(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"3");
+    }
+
+    public void onClickFour(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"4");
+    }
+
+    public void onClickFive(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"5");
+    }
+
+    public void onClickSix(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"6");
+    }
+
+    public void onClickSeven(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"7");
+    }
+
+    public void onClickEight(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"8");
+    }
+
+    public void onClickNine(View view){
+        textCalculator.setText(textCalculator.getText().toString()+"9");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textCalculator = findViewById(R.id.textCalculator);
+
     }
 }
