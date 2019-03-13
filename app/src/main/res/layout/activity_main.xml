@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/fontawasome"
+            android:onClick="onClickRemove"
             android:text="\uf55a" />
 
         <Button
@@ -37,6 +38,7 @@
             android:layout_marginLeft="-96dp"
             android:layout_marginRight="96dp"
             android:fontFamily="@font/fontawasome"
+            android:onClick="onClickDelete"
             android:text="\uf00d" />
     </RelativeLayout>
 

@@ -18,6 +18,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickRemove(View view){
+        String text = textCalculator.getText().toString();
+        text = text.substring(0, text.length()-1);
+        textCalculator.setText(text);
+    }
+
+    public void onClickDelete(View view){
+        textCalculator.setText("");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
