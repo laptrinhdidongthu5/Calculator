@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -10,7 +10,7 @@
             type="com.pheni.calculator.Calculator" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/linearLayout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -73,6 +73,15 @@
                 android:layout_weight="10"></View>
 
             <Button
+                android:id="@+id/btn_clearAll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:fontFamily="@font/fontawasome"
+                android:onClick="onClickDelete"
+                android:text="@string/uf00d" />
+
+            <Button
                 android:id="@+id/btn_clear"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -81,14 +90,6 @@
                 android:onClick="onClickRemove"
                 android:text="@string/uf55a" />
 
-            <Button
-                android:id="@+id/btn_clearAll"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:fontFamily="@font/fontawasome"
-                android:onClick="onClickDelete"
-                android:text="@string/uf00d" />
         </LinearLayout>
 
         <LinearLayout

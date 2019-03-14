@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
             String text = textEdit.getText().toString();
             text = text.substring(0, text.length() - 1);
             textEdit.setText(text);
+            int pos = textEdit.getSelectionEnd();
+            Editable etext = textEdit.getText();
+            Selection.setSelection(etext, textEdit.length());
         }
     }
 
