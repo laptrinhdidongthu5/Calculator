@@ -1,5 +1,6 @@
 package com.pheni.calculator;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -48,19 +49,22 @@ public class MainActivity extends AppCompatActivity {
         textEdit.setText("");
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-//        textCalculator = findViewById(R.id.text_calculator);
-
-        TableLayout keyBoarch = (TableLayout) findViewById(R.id.basic_keyBoard);
-
         textEdit = findViewById(R.id.text_result);
         textEdit.setShowSoftInputOnFocus(false);
+
+        View view_open = findViewById(R.id.view_open);
+        view_open.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, KeyBoard.class));
+            }
+        });
 
     }
 }
