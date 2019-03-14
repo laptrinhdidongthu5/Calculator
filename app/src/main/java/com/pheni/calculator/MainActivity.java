@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         textEdit = findViewById(R.id.text_result);
         textEdit.setShowSoftInputOnFocus(false);
 
-        View view_open = findViewById(R.id.view_open);
+        View view_open = findViewById(R.id.btn_onKeyBoard);
         view_open.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

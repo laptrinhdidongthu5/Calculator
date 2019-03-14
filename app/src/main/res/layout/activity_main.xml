@@ -67,11 +67,13 @@
             android:orientation="horizontal"
             android:weightSum="20">
 
-            <View
-                android:id="@+id/view_open"
+            <Button
+                android:id="@+id/btn_onKeyBoard"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"></View>
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:fontFamily="@font/fontawasome"
+                android:text="\uf11c" />
 
             <Button
                 android:id="@+id/btn_clearAll"
