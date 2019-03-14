@@ -2,7 +2,11 @@ package com.pheni.calculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.Layout;
+import android.text.Selection;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -15,8 +19,14 @@ public class MainActivity extends AppCompatActivity {
     public void onClickNumber(View view){
         String text = view.getTag().toString();
 
-//        textCalculator.setText(textCalculator.getText().toString()+ text );
-        textEdit.setText(textEdit.getText().toString()+ text );
+        int pos = textEdit.getSelectionStart();
+        String a = textEdit.getText().toString();
+
+        textEdit.setText(a.substring(0, pos) + text + a.substring(pos, a.length()) );
+
+        Editable etext = textEdit.getText();
+        Selection.setSelection(etext, pos+1);
+//        Log.i("location", Integer.toString(a) );
 
     }
 
