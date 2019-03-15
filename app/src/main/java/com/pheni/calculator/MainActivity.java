@@ -32,18 +32,29 @@ public class MainActivity extends AppCompatActivity {
 
         Editable etext = textEdit.getText();
         Selection.setSelection(etext, pos + 1);
-//        Log.i("location", Integer.toString(a) );
 
     }
 
     public void onClickRemove(View view) {
-        if (textEdit.getText().toString().length() != 0) {
-            String text = textEdit.getText().toString();
-            text = text.substring(0, text.length() - 1);
-            textEdit.setText(text);
-            int pos = textEdit.getSelectionEnd();
-            Editable etext = textEdit.getText();
-            Selection.setSelection(etext, textEdit.length());
+        String textCacul = textEdit.getText().toString();
+        if (textCacul.length() != 0) {
+            int position = textCacul.length() - 1;
+            if(textCacul.charAt(position) == 'w' || textCacul.charAt(position) == 'r' ||
+                    textCacul.charAt(position) == 's' || textCacul.charAt(position) == 'v' ||
+                    textCacul.charAt(position) == 'n'){
+                String text = textEdit.getText().toString();
+                text = text.substring(0, text.length() - 3);
+                textEdit.setText(text);
+                Editable etext = textEdit.getText();
+                Selection.setSelection(etext, textEdit.length());
+            }
+            else {
+                String text = textEdit.getText().toString();
+                text = text.substring(0, text.length() - 1);
+                textEdit.setText(text);
+                Editable etext = textEdit.getText();
+                Selection.setSelection(etext, textEdit.length());
+            }
         }
     }
 
@@ -52,7 +63,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickResult(View view) {
-        textEdit.setText("");
+        Expression exp = new Expression(textEdit.getText().toString());
+
+        String a = exp.getPrioritize();
+
+        Log.i("a",a);
+
     }
 
     @Override
@@ -66,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 int pos = textEdit.getSelectionStart();
                 String a = textEdit.getText().toString();
 
-                textEdit.setText(a.substring(0, pos) + feedback + a.substring(pos, a.length()));
+                textEdit.setText(a.substring(0, pos)  + feedback + a.substring(pos, a.length()));
 
                 Editable etext = textEdit.getText();
                 Selection.setSelection(etext, pos + feedback.length());
