@@ -13,7 +13,7 @@ activity_key_broad hiển thị che phần xóa đối với các màn hình có
 
 
 # ERROR:
-bug: chuyển đổi bàn phím không hiện bàn phím nâng cao, cần chạm vào góc màn hình mới hiện
+//chuyển đổi bàn phím không hiện theo như ý muốn
 
 
 #Lưu ý cái nào khắc phục được rồi xin hãy // thôi đừng xóa
