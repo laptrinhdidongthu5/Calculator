@@ -1,3 +1,6 @@
+#Tài liệu cho dự án: https://drive.google.com/drive/folders/1UPmaSCCLP03KDG5uhlqH9F92rqJwjSI-?usp=sharing
+
+
 # Calculator
 Fix config để chạy được trên các thiết bị IPA 19
 App calculator phiên bản chạy 19 ( Kitkat 4.4)
