@@ -34,12 +34,12 @@ public class KeyBoard extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width * .9), (int)(height * .6));
+        getWindow().setLayout((int)(width * .9), (int)(height * .5));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.BOTTOM;
         params.x = 0;
-        params.y = 50;
+        params.y = 150;
 
         getWindow().setAttributes(params);
 

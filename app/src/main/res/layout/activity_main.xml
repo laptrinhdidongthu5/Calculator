@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -25,50 +24,35 @@
             android:id="@+id/linearLayout_input"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="27"
+            android:layout_margin="8dp"
+            android:layout_weight="22"
             android:orientation="vertical"
             android:weightSum="20">
             <!--android:background="#000">-->
 
-
             <TextView
                 android:id="@+id/text_expression"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_height="4dp"
+                android:layout_weight="8"
                 android:background="#fff"
-                android:gravity="center|right"
                 android:hint="@string/_0"
-                android:inputType="textPersonName|textMultiLine"
-                android:textSize="20sp" />
+                android:textAlignment="textEnd"
+                android:textSize="35sp" />
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/text_result"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="15"
-                android:weightSum="20"
-                app:counterEnabled="true"
-                app:counterMaxLength="199"
-                app:hintEnabled="false">
+                android:layout_weight="11"
+                android:autofillHints=""
+                android:background="@drawable/boders_edit_text"
+                android:ems="10"
+                android:hint="Begin a your expressioin on..."
+                android:inputType="textPersonName"
+                android:text="@{calculator.sResult}" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/text_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:background="@drawable/boders_edit_text"
-                    android:digits="0123456789/*-+()sqrtminaxcbs"
-                    android:ems="12"
-                    android:gravity="center|left"
-                    android:hint="Your expressioin are..."
-                    android:inputType="textPersonName|textMultiLine"
-                    android:maxLength="200"
-                    android:text="@{calculator.sResult}"
-                    android:textSize="25sp" />
 
-            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -76,9 +60,8 @@
             android:id="@+id/editTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="8dp"
             android:layout_marginVertical="5dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_weight="8"
             android:background="#fff"
             android:orientation="horizontal"
@@ -135,6 +118,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="8dp"
                 android:layout_marginVertical="5dp"
                 android:layout_weight="19"
                 android:orientation="vertical"
@@ -147,7 +131,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="40"
                     android:orientation="vertical"
-
+                    android:textSize="30sp"
                     android:weightSum="20">
 
                     <TableRow
@@ -157,6 +141,42 @@
                         android:orientation="vertical"
                         android:textSize="30sp"
                         android:weightSum="10">
+
+                        <Button
+                            android:id="@+id/btn_seven"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="7"
+                            android:text="@string/_7"
+                            android:textSize="25sp" />
+
+                        <Button
+                            android:id="@+id/btn_eight"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="8"
+                            android:text="@string/_8"
+                            android:textSize="25sp" />
+
+                        <Button
+                            android:id="@+id/btn_nine"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="9"
+                            android:text="@string/_9"
+                            android:textSize="25sp" />
 
                         <Button
                             android:id="@+id/btn_div"
@@ -169,44 +189,6 @@
                             android:tag="/"
                             android:text="@string/uDiv"
                             android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_seven"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="7"
-                            android:text="@string/_7"
-                            android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_eight"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="8"
-                            android:text="@string/_8"
-                            android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_nine"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="9"
-                            android:text="@string/_9"
-                            android:textSize="25sp" />
-
-
                     </TableRow>
 
                     <TableRow
@@ -215,6 +197,42 @@
                         android:layout_weight="5"
                         android:orientation="vertical"
                         android:weightSum="10">>
+
+                        <Button
+                            android:id="@+id/btn_four"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="4"
+                            android:text="@string/_4"
+                            android:textSize="25sp" />
+
+                        <Button
+                            android:id="@+id/btn_five"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="5"
+                            android:text="@string/_5"
+                            android:textSize="25sp" />
+
+                        <Button
+                            android:id="@+id/btn_six"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="6"
+                            android:text="@string/_6"
+                            android:textSize="25sp" />
 
                         <Button
                             android:id="@+id/btn_mul"
@@ -227,44 +245,6 @@
                             android:tag="x"
                             android:text="@string/x"
                             android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_four"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="4"
-                            android:text="@string/_4"
-                            android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_five"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="5"
-                            android:text="@string/_5"
-                            android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_six"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="6"
-                            android:text="@string/_6"
-                            android:textSize="25sp" />
-
-
                     </TableRow>
 
                     <TableRow
@@ -273,6 +253,42 @@
                         android:layout_weight="5"
                         android:orientation="vertical"
                         android:weightSum="10">>
+
+                        <Button
+                            android:id="@+id/btn_one"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="1"
+                            android:text="@string/_1"
+                            android:textSize="25sp" />
+
+                        <Button
+                            android:id="@+id/btn_two"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="2"
+                            android:text="@string/_2"
+                            android:textSize="25sp" />
+
+                        <Button
+                            android:id="@+id/btn_three"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="3"
+                            android:text="@string/_3"
+                            android:textSize="25sp" />
 
                         <Button
                             android:id="@+id/btn_sub"
@@ -285,44 +301,6 @@
                             android:tag="-"
                             android:text="@string/uSub"
                             android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_one"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="1"
-                            android:text="@string/_1"
-                            android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_two"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="2"
-                            android:text="@string/_2"
-                            android:textSize="25sp" />
-
-                        <Button
-                            android:id="@+id/btn_three"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="3"
-                            android:text="@string/_3"
-                            android:textSize="25sp" />
-
-
                     </TableRow>
 
                     <TableRow
@@ -333,17 +311,16 @@
                         android:weightSum="10">>
 
                         <Button
-                            android:id="@+id/button18"
+                            android:id="@+id/btn_zero"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
-                            android:background="@drawable/boders_button_dau"
+                            android:background="@drawable/boders_button"
                             android:onClick="onClickNumber"
-                            android:tag="+"
-                            android:text="@string/uCong"
+                            android:tag="0"
+                            android:text="@string/_0"
                             android:textSize="25sp" />
-
 
                         <Button
                             android:id="@+id/btn_dot"
@@ -360,18 +337,6 @@
                             />
 
                         <Button
-                            android:id="@+id/btn_zero"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:background="@drawable/button_number"
-                            android:onClick="onClickNumber"
-                            android:tag="0"
-                            android:text="@string/_0"
-                            android:textSize="25sp" />
-
-                        <Button
                             android:id="@+id/button17"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -382,7 +347,17 @@
                             android:text="@string/uEqual"
                             android:textSize="25sp" />
 
-
+                        <Button
+                            android:id="@+id/button18"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button_dau"
+                            android:onClick="onClickNumber"
+                            android:tag="+"
+                            android:text="@string/uCong"
+                            android:textSize="25sp" />
                     </TableRow>
 
 
