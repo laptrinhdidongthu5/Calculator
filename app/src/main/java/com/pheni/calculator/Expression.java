@@ -104,28 +104,28 @@ public class Expression {
         String textReplace = "";
         String result = "";
 
-//        Operation1 pt = new Operation1(Double.parseDouble(number1));
+        Operation1 pt = new Operation1(Double.parseDouble(number));
 
         switch (method){
             case "sin":
-                textReplace = Double.toString(Math.sin(Double.parseDouble(number)));
+                textReplace = Double.toString(pt.TinhSin());
 
                 result = textHanding.replace(text, textReplace);
                 break;
             case "cos":
-                textReplace = Double.toString(Math.cos(Double.parseDouble(number)));
+                textReplace = Double.toString(pt.TinhCos());
                 result = textHanding.replace(text, textReplace);
                 break;
             case "tan":
-                textReplace = Double.toString(Math.tan(Double.parseDouble(number)));
+                textReplace = Double.toString(pt.TinhTan());
                 result = textHanding.replace(text, textReplace);
                 break;
             case "inv":
-                textReplace = Double.toString(1/Double.parseDouble(number));
+                textReplace = Double.toString(pt.Tinh1Phanx());
                 result = textHanding.replace(text, textReplace);
                 break;
             case "abs":
-                textReplace = Double.toString(Math.abs(Double.parseDouble(number)));
+                textReplace = Double.toString(pt.TinhTriTuyetDoi());
                 result = textHanding.replace(text, textReplace);
                 break;
             default:
