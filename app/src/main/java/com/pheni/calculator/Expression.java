@@ -5,6 +5,7 @@ import android.util.Log;
 public class Expression {
 
     public String textCaculator;
+    public String textError;
 
     public Expression (String textCaculator){
         this.textCaculator = textCaculator;
@@ -16,7 +17,7 @@ public class Expression {
 
         for (int i = 0 ; i< textHanding.length(); i++){
             if(textHanding.charAt(i) == '+' || textHanding.charAt(i) == '-' ||
-                    textHanding.charAt(i) == 'x' || textHanding.charAt(i) == '/' ||
+                    textHanding.charAt(i) == '*' || textHanding.charAt(i) == '/' ||
                     textHanding.charAt(i) == '%' || textHanding.charAt(i) == ',' ||
                     textHanding.charAt(i) == '(' || textHanding.charAt(i) == ')'){
                 textHanding = addChar(textHanding, ' ', i);
@@ -28,11 +29,18 @@ public class Expression {
             else if(textHanding.charAt(i) == 's' || textHanding.charAt(i) == 'm' ||
                     textHanding.charAt(i) == 'i' ||textHanding.charAt(i) == 'a' ||
                     textHanding.charAt(i) == 'c' ||textHanding.charAt(i) == 't' ){
-                textHanding = addChar(textHanding, ' ', i);
-                i+=3;
+
+                if(textHanding.charAt(i-1) != ' '){
+                    textHanding = addChar(textHanding, ' ', i);
+                    textHanding = addChar(textHanding, '*', i);
+                    textHanding = addChar(textHanding, ' ', i);
+                    i += 5;
+                }
+                else {
+                    i += 2;
+                }
             }
         }
-
         return textHanding;
     }
 
@@ -151,5 +159,12 @@ public class Expression {
         this.textCaculator = textCaculator;
     }
 
+    public String getTextError() {
+        return textError;
+    }
+
+    private void setTextError(String textError){
+        this.textError = textError;
+    }
 
 }
