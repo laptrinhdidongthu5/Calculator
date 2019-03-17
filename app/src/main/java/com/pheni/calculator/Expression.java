@@ -11,30 +11,12 @@ public class Expression {
         this.textCaculator = textCaculator;
     }
 
-    public static String deleteSpace(String textCaculator){
-        String textHanding = textCaculator;
-        textHanding = textHanding.replaceAll("\\s+","");
-        return textHanding;
-    }
-
     public static String addSpace(String textCaculator){
 
         String textHanding = textCaculator;
 
-        for (int i = 1 ; i< textHanding.length(); i++){
-
-            if(textHanding.charAt(i) == '-'){
-                if(textHanding.charAt(i-2) == '+' || textHanding.charAt(i-2) == '(' ||textHanding.charAt(i-2) == '-' ||
-                   textHanding.charAt(i-2) == '*' ||textHanding.charAt(i-2) == '/' ){
-
-                }
-                else {
-                    textHanding = addChar(textHanding, ' ', i);
-                    textHanding = addChar(textHanding, ' ', i+2);
-                    i+=2;
-                }
-            }
-            else if(textHanding.charAt(i) == '+' ||
+        for (int i = 0 ; i< textHanding.length(); i++){
+            if(textHanding.charAt(i) == '+' || textHanding.charAt(i) == '-' ||
                     textHanding.charAt(i) == '*' || textHanding.charAt(i) == '/' ||
                     textHanding.charAt(i) == '%' || textHanding.charAt(i) == ',' ||
                     textHanding.charAt(i) == '(' || textHanding.charAt(i) == ')'){
@@ -104,28 +86,28 @@ public class Expression {
         String textReplace = "";
         String result = "";
 
-        Operation1 pt = new Operation1(Double.parseDouble(number));
+//        Operation1 pt = new Operation1(Double.parseDouble(number1));
 
         switch (method){
             case "sin":
-                textReplace = Double.toString(pt.TinhSin());
+                textReplace = Double.toString(Math.sin(Double.parseDouble(number)));
 
                 result = textHanding.replace(text, textReplace);
                 break;
             case "cos":
-                textReplace = Double.toString(pt.TinhCos());
+                textReplace = Double.toString(Math.cos(Double.parseDouble(number)));
                 result = textHanding.replace(text, textReplace);
                 break;
             case "tan":
-                textReplace = Double.toString(pt.TinhTan());
+                textReplace = Double.toString(Math.tan(Double.parseDouble(number)));
                 result = textHanding.replace(text, textReplace);
                 break;
             case "inv":
-                textReplace = Double.toString(pt.Tinh1Phanx());
+                textReplace = Double.toString(1/Double.parseDouble(number));
                 result = textHanding.replace(text, textReplace);
                 break;
             case "abs":
-                textReplace = Double.toString(pt.TinhTriTuyetDoi());
+                textReplace = Double.toString(Math.abs(Double.parseDouble(number)));
                 result = textHanding.replace(text, textReplace);
                 break;
             default:
@@ -137,8 +119,8 @@ public class Expression {
 
     public String prioritize(){
         String textHanding = addSpace(textCaculator);
-        String result = textHanding;
-        Log.i("a","a");
+        String result = "";
+
         String[] arStr = textHanding.split(" ");
         int index = 0;
         for (String item : arStr) {
@@ -162,7 +144,6 @@ public class Expression {
                     break;
             }
         }
-        result = deleteSpace(result);
         return result;
     }
 
