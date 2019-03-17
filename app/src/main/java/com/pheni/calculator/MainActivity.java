@@ -10,16 +10,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.pheni.calculator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public EditText textEdit;                                   //Thành giải thích
+    public TextView txt1;
+=======
     public EditText textEdit;                                   //var text_expression
+>>>>>>> 473f7da96ecffc4085e63943b26050ceb5e21e19
+=======
+    public EditText textEdit;                                   //var text_expression
+>>>>>>> 473f7da96ecffc4085e63943b26050ceb5e21e19
 
     public static final int MY_REQUEST_CODE = 100;                //
     private static final int REQUEST_CODE_KEYBOARD = 0x9345;    //const activity
@@ -78,7 +89,21 @@ public class MainActivity extends AppCompatActivity {
     public void onClickResult(View view) {
         Expression exp = new Expression(textEdit.getText().toString());
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        String a = exp.getPrioritize();
+        txt1= (TextView) findViewById(R.id.text_expression);
+        double kq;
+        OtherFuntion ketqua=new OtherFuntion();
+        kq=ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
+        txt1.setText(String.valueOf(kq));
+        Log.i("a",a);
+=======
         String a = exp.prioritize();
+>>>>>>> 473f7da96ecffc4085e63943b26050ceb5e21e19
+=======
+        String a = exp.prioritize();
+>>>>>>> 473f7da96ecffc4085e63943b26050ceb5e21e19
 
     }
 
