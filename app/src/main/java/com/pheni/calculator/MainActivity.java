@@ -82,9 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Expression exp = new Expression(textEdit.getText().toString());
 
         String text_expression = exp.prioritize();
-
-        Log.i("result final", text_expression);
-
+        
         txt1= (TextView) findViewById(R.id.text_result);
         double kq;
         OtherFuntion ketqua=new OtherFuntion();

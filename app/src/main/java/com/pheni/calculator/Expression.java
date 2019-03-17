@@ -11,12 +11,30 @@ public class Expression {
         this.textCaculator = textCaculator;
     }
 
+    public static String deleteSpace(String textCaculator){
+        String textHanding = textCaculator;
+        textHanding = textHanding.replaceAll("\\s+","");
+        return textHanding;
+    }
+
     public static String addSpace(String textCaculator){
 
         String textHanding = textCaculator;
 
-        for (int i = 0 ; i< textHanding.length(); i++){
-            if(textHanding.charAt(i) == '+' || textHanding.charAt(i) == '-' ||
+        for (int i = 1 ; i< textHanding.length(); i++){
+
+            if(textHanding.charAt(i) == '-'){
+                if(textHanding.charAt(i-2) == '+' || textHanding.charAt(i-2) == '(' ||textHanding.charAt(i-2) == '-' ||
+                   textHanding.charAt(i-2) == '*' ||textHanding.charAt(i-2) == '/' ){
+
+                }
+                else {
+                    textHanding = addChar(textHanding, ' ', i);
+                    textHanding = addChar(textHanding, ' ', i+2);
+                    i+=2;
+                }
+            }
+            else if(textHanding.charAt(i) == '+' ||
                     textHanding.charAt(i) == '*' || textHanding.charAt(i) == '/' ||
                     textHanding.charAt(i) == '%' || textHanding.charAt(i) == ',' ||
                     textHanding.charAt(i) == '(' || textHanding.charAt(i) == ')'){
@@ -144,7 +162,7 @@ public class Expression {
                     break;
             }
         }
-        Log.i("asv", result);
+        result = deleteSpace(result);
         return result;
     }
 
