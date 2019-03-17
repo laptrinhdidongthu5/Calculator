@@ -142,7 +142,7 @@ public class OtherFuntion {
                                 giatri+=NganXep1.peek().charAt(i);
                         }
                         Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                        a=tinhToan.TinhCos();
+                        a=tinhToan.TinhSin();
                         NganXep1.pop();
                     }
                     else
@@ -156,7 +156,7 @@ public class OtherFuntion {
                                     giatri+=NganXep1.peek().charAt(i);
                             }
                             Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                            a=tinhToan.TinhSin();
+                            a=tinhToan.TinhCos();
                             NganXep1.pop();
                         }
                         else
@@ -187,7 +187,7 @@ public class OtherFuntion {
                                 giatri+=NganXep1.peek().charAt(i);
                         }
                         Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                        b=tinhToan.TinhCos();
+                        b=tinhToan.TinhSin();
                         NganXep1.pop();
                     }
                     else
@@ -195,18 +195,24 @@ public class OtherFuntion {
                         if(NganXep1.peek().charAt(0)=='c')
                         {
                             String giatri="";
-                            giatri+=NganXep1.peek().charAt(3);
-                            giatri+=NganXep1.peek().charAt(4);
+                            for(int i=0;i<NganXep1.peek().length();i++)
+                            {
+                                if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
+                                    giatri+=NganXep1.peek().charAt(i);
+                            }
                             Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                            b=tinhToan.TinhSin();
+                            b=tinhToan.TinhCos();
                             NganXep1.pop();
                         }
                         else
                         if(NganXep1.peek().charAt(0)=='t')
                         {
                             String giatri="";
-                            giatri+=NganXep1.peek().charAt(3);
-                            giatri+=NganXep1.peek().charAt(4);
+                            for(int i=0;i<NganXep1.peek().length();i++)
+                            {
+                                if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
+                                    giatri+=NganXep1.peek().charAt(i);
+                            }
                             Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
                             b=tinhToan.TinhTan();
                             NganXep1.pop();
