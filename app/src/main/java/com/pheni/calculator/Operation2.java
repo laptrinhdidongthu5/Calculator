@@ -1,4 +1,4 @@
-package comunityuni.com;
+package com.pheni.calculator;
 
 import java.lang.Math;
 
@@ -25,6 +25,14 @@ public class Operation2 {
 	public double TinhMode()
 	{
 		return toanHang1%toanHang2;
+	}
+
+	public double TinhCan()
+	{
+		if(toanHang2 == 0){
+			toanHang2 = 1;
+		}
+		return Math.pow(toanHang1, 1/toanHang2);
 	}
 
 	public double TinhMu()

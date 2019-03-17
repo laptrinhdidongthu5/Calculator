@@ -19,13 +19,13 @@ import com.pheni.calculator.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
 
-    public EditText textEdit;                                   //Thành giải thích
+    public EditText textEdit;                                   //var text_expression
 
-    public static final int MY_REQUEST_CODE = 100;                //Thành giải thích
-    private static final int REQUEST_CODE_KEYBOARD = 0x9345;    //Thành giải thích
+    public static final int MY_REQUEST_CODE = 100;                //
+    private static final int REQUEST_CODE_KEYBOARD = 0x9345;    //const activity
 
     /**
-     * Thành giải thích
+     * event add number and calculator in edittext
      *
      * @param view
      */
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Thành giải thích
+     * event remove 1 char in edittext
      *
      * @param view
      */
@@ -78,9 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickResult(View view) {
         Expression exp = new Expression(textEdit.getText().toString());
 
-        String a = exp.getPrioritize();
-
-        Log.i("a",a);
+        String a = exp.prioritize();
 
     }
 
@@ -110,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        textEdit = findViewById(R.id.text_result);
+        textEdit = findViewById(R.id.text_expression);
         //textEdit.setShowSoftInputOnFocus(false); //không sử dụng được ở API 19: fix lại ở disableinputRetaincursor() method:
         //hideKeyboard(this);//this ở đây chính là một MainActivity but it is not working
         disableinputRetaincursor(textEdit); //it working success!
