@@ -79,10 +79,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickResult(View view) {
 
-        txt1= (TextView) findViewById(R.id.text_expression);
+        Expression exp = new Expression(textEdit.getText().toString());
+
+        String text_expression = exp.prioritize();
+
+        Log.i("result final", text_expression);
+
+        txt1= (TextView) findViewById(R.id.text_result);
         double kq;
         OtherFuntion ketqua=new OtherFuntion();
-        kq=ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
+        kq=ketqua.KyPhapBaLanNguoc(text_expression);
+
         txt1.setText(String.valueOf(kq));
 
     }

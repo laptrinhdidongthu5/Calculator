@@ -119,8 +119,8 @@ public class Expression {
 
     public String prioritize(){
         String textHanding = addSpace(textCaculator);
-        String result = "";
-
+        String result = textHanding;
+        Log.i("a","a");
         String[] arStr = textHanding.split(" ");
         int index = 0;
         for (String item : arStr) {
@@ -144,6 +144,7 @@ public class Expression {
                     break;
             }
         }
+        Log.i("asv", result);
         return result;
     }
 
