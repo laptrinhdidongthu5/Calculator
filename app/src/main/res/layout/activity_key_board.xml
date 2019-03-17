@@ -159,7 +159,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="10"
                         android:onClick="onClickNumber"
-                        android:tag="sin("
+                        android:tag="sin"
                         android:text="Sin" />
 
                     <Button
@@ -168,7 +168,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="10"
                         android:onClick="onClickNumber"
-                        android:tag="cos("
+                        android:tag="cos"
                         android:text="Cos" />
 
                     <Button
@@ -177,7 +177,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="10"
                         android:onClick="onClickNumber"
-                        android:tag="tan("
+                        android:tag="tan"
                         android:text="Tan" />
                 </TableRow>
 
