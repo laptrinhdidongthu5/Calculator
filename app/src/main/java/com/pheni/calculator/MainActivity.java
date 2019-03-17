@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickResult(View view) {
 
-        txt1 = (TextView) findViewById(R.id.text_result);
+        txt1 = (TextView) findViewById(R.id.text_expression);
         double kq;
         String giatri = textEdit.getText().toString();
 
