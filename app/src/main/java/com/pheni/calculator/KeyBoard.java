@@ -11,7 +11,7 @@ import android.view.WindowManager;
 
 public class KeyBoard extends Activity {
 
-    public void onClickNumber(View view){
+    public void onClickNumber(View view) {
 
         String text = view.getTag().toString();
 
@@ -34,14 +34,16 @@ public class KeyBoard extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width * .9), (int)(height * .6));
+        getWindow().setLayout((int) (width * 1), (int) (height * .6));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
+
         params.gravity = Gravity.BOTTOM;
         params.x = 0;
-        params.y = 50;
+        params.y = -50;
+        params.height = (int) (height * 0.6);
+        params.width = width * 1;
 
         getWindow().setAttributes(params);
-
     }
 }

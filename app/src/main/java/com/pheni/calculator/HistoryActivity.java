@@ -26,7 +26,7 @@ import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    ListView lvHistory;
+    ListView lvHistory;         //để ánh xạ listview ở ACtivi..xml
     public static ArrayList<String> arrayList = new ArrayList<>();
     List<History> listHistory;
     Button btnClearHistory;
