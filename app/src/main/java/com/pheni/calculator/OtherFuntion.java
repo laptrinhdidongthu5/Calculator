@@ -6,7 +6,8 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 public class OtherFuntion {
-    public static int KiemTraDoUuTien(char c)
+
+    private static int KiemTraDoUuTien(char c)
     {
         if(c=='('||c==')')
             return 0;
@@ -15,7 +16,7 @@ public class OtherFuntion {
         return 2;
     }
 
-    public static boolean KiemTraToanTu(char c)
+    private static boolean KiemTraToanTu(char c)
     {
         char operator[]= {'+','-','*','/'};
         Arrays.sort(operator);
@@ -26,89 +27,123 @@ public class OtherFuntion {
 
     public double KyPhapBaLanNguoc(String toanHang)
     {
+        boolean flag=false;
         Stack<String> NganXep=new Stack<String>();
         String tam2="";
         Queue<String> tam = new LinkedList<String>();
         int dem=0;
         int dem1=0;
         int dem2=0;
+        String tamAm="";
         for(int i=0;i<toanHang.length();i++)
         {
             dem++;
             if(toanHang.charAt(i)=='(')
             {
-                String tam1="";
-                tam1+=toanHang.charAt(i);
-                NganXep.push(tam1);
-            }
-            else
-            {
-                if(toanHang.charAt(i)==')')
+                if(toanHang.charAt(i+1)=='-')
                 {
-                    if(tam2!="")
-                    {
-                        tam.add(tam2);
-                        tam2="";
-                    }
-                    while(NganXep.peek().charAt(0)!='(')
-                    {
-                        tam.add(NganXep.pop());
-                    }
-                    NganXep.pop();
+                    flag=true;
                 }
                 else
                 {
-                    if(KiemTraToanTu(toanHang.charAt(i))!=true)
+                    String tam1="";
+                    tam1+=toanHang.charAt(i);
+                    NganXep.push(tam1);
+                }
+            }
+            else
+            {
+
+                if(flag==true)
+                {
+                    if(toanHang.charAt(i)!=')')
                     {
-                        if(i-1>=0)
-                        {
-                            if(toanHang.charAt(i-1)=='('|| toanHang.charAt(i-1)==')'||KiemTraToanTu(toanHang.charAt(i-1))==true)
-                            {
-                                if(dem2>dem1 && tam2!="")
-                                {
-                                    tam.add(tam2);
-                                    tam2="";
-                                }
-                            }
-                        }
-                        tam2+=toanHang.charAt(i);
+                        tamAm+=toanHang.charAt(i);
                     }
                     else
                     {
-                        dem1=dem2;
-                        dem2++;
-                        String tam1="";
-                        if(NganXep.isEmpty()!=true)
+                        tam.add(tamAm);
+                        tamAm="";
+                        flag=false;
+                    }
+                }
+                else
+                {
+                    if(toanHang.charAt(i)==')')
+                    {
+                        if(tam2!="")
                         {
-                            if(KiemTraDoUuTien(NganXep.peek().charAt(0))>=KiemTraDoUuTien(toanHang.charAt(i)))
+                            tam.add(tam2);
+                            tam2="";
+                        }
+                        while(NganXep.peek().charAt(0)!='(')
+                        {
+                            tam.add(NganXep.pop());
+                        }
+                        NganXep.pop();
+                    }
+                    else
+                    {
+                        if(KiemTraToanTu(toanHang.charAt(i))!=true)
+                        {
+                            if(i-1>=0)
                             {
-                                if(tam2!="")
+                                if(toanHang.charAt(i-1)=='('|| toanHang.charAt(i-1)==')'||KiemTraToanTu(toanHang.charAt(i-1))==true)
                                 {
-                                    tam.add(tam2);
-                                    tam2="";
+                                    if(dem2>dem1 && tam2!="")
+                                    {
+                                        tam.add(tam2);
+                                        tam2="";
+                                    }
                                 }
-                                tam.add(NganXep.pop());
-                                tam1+=toanHang.charAt(i);
-                                NganXep.push(tam1);
                             }
-                            else
-                            {
-                                if(tam2!="")
-                                {
-                                    tam.add(tam2);
-                                    tam2="";
-                                }
-                                tam1+=toanHang.charAt(i);
-                                NganXep.push(tam1);
-                            }
+                            tam2+=toanHang.charAt(i);
                         }
                         else
                         {
-                            tam1+=toanHang.charAt(i);
-                            NganXep.push(tam1);
+                            if(tam2!="")
+                            {
+                                tam.add(tam2);
+                                tam2="";
+                            }
+                            dem1=dem2;
+                            dem2++;
+                            String tam1="";
+                            if(NganXep.isEmpty()!=true)
+                            {
+                                if(KiemTraDoUuTien(NganXep.peek().charAt(0))>=KiemTraDoUuTien(toanHang.charAt(i)))
+                                {
+                                    if(tam2!="")
+                                    {
+                                        tam.add(tam2);
+                                        tam2="";
+                                    }
+                                    tam.add(NganXep.pop());
+                                    tam1+=toanHang.charAt(i);
+                                    NganXep.push(tam1);
+                                }
+                                else
+                                {
+                                    if(tam2!="")
+                                    {
+                                        tam.add(tam2);
+                                        tam2="";
+                                    }
+                                    tam1+=toanHang.charAt(i);
+                                    NganXep.push(tam1);
+                                }
+                            }
+                            else
+                            {
+                                tam1+=toanHang.charAt(i);
+                                NganXep.push(tam1);
+                            }
                         }
                     }
                 }
+<<<<<<< HEAD
+                if(dem==toanHang.length())
+=======
             }
 
             if(dem==toanHang.length())
@@ -118,8 +153,16 @@ public class OtherFuntion {
                     tam.add(tam2);
                 }
                 while(NganXep.isEmpty()!=true)
+>>>>>>> 8f4722dff98ce53d13c50e6331990b36d8862164
                 {
-                    tam.add(NganXep.pop());
+                    if(tam2!="")
+                    {
+                        tam.add(tam2);
+                    }
+                    while(NganXep.isEmpty()!=true)
+                    {
+                        tam.add(NganXep.pop());
+                    }
                 }
             }
         }
