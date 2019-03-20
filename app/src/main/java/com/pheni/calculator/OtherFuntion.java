@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.lang.Math;
 
 public class OtherFuntion {
-
+    
     private static int KiemTraDoUuTien(char c)
     {
         if(c=='('||c==')')
@@ -142,18 +142,7 @@ public class OtherFuntion {
                         }
                     }
                 }
-<<<<<<< HEAD
                 if(dem==toanHang.length())
-=======
-            }
-            if(dem==toanHang.length())
-            {
-                if(tam2!="")
-                {
-                    tam.add(tam2);
-                }
-                while(NganXep.isEmpty()!=true)
->>>>>>> 8f4722dff98ce53d13c50e6331990b36d8862164
                 {
                     if(tam2!="")
                     {
