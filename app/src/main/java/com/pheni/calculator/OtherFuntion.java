@@ -6,7 +6,7 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 public class OtherFuntion {
-    
+
     private static int KiemTraDoUuTien(char c)
     {
         if(c=='('||c==')')
@@ -141,7 +141,15 @@ public class OtherFuntion {
                         }
                     }
                 }
-                if(dem==toanHang.length())
+            }
+
+            if(dem==toanHang.length())
+            {
+                if(tam2!="")
+                {
+                    tam.add(tam2);
+                }
+                while(NganXep.isEmpty()!=true)
                 {
                     if(tam2!="")
                     {
@@ -164,96 +172,8 @@ public class OtherFuntion {
                 char tam1=tam.peek().charAt(0);
                 if(KiemTraToanTu(tam1)==true)
                 {
-                    if(NganXep1.peek().charAt(0)=='s')
-                    {
-                        String giatri="";
-                        for(int i=0;i<NganXep1.peek().length();i++)
-                        {
-                            if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
-                                giatri+=NganXep1.peek().charAt(i);
-                        }
-                        Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                        a=tinhToan.TinhSin();
-                        NganXep1.pop();
-                    }
-                    else
-                    {
-                        if(NganXep1.peek().charAt(0)=='c')
-                        {
-                            String giatri="";
-                            for(int i=0;i<NganXep1.peek().length();i++)
-                            {
-                                if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
-                                    giatri+=NganXep1.peek().charAt(i);
-                            }
-                            Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                            a=tinhToan.TinhCos();
-                            NganXep1.pop();
-                        }
-                        else
-                        if(NganXep1.peek().charAt(0)=='t')
-                        {
-                            String giatri="";
-                            for(int i=0;i<NganXep1.peek().length();i++)
-                            {
-                                if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
-                                    giatri+=NganXep1.peek().charAt(i);
-                            }
-                            Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                            a=tinhToan.TinhTan();
-                            NganXep1.pop();
-                        }
-                        else
-                        {
-                            a=Double.parseDouble(String.valueOf(NganXep1.pop()));
-                        }
-                    }
-
-                    if(NganXep1.peek().charAt(0)=='s')
-                    {
-                        String giatri="";
-                        for(int i=0;i<NganXep1.peek().length();i++)
-                        {
-                            if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
-                                giatri+=NganXep1.peek().charAt(i);
-                        }
-                        Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                        b=tinhToan.TinhSin();
-                        NganXep1.pop();
-                    }
-                    else
-                    {
-                        if(NganXep1.peek().charAt(0)=='c')
-                        {
-                            String giatri="";
-                            for(int i=0;i<NganXep1.peek().length();i++)
-                            {
-                                if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
-                                    giatri+=NganXep1.peek().charAt(i);
-                            }
-                            Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                            b=tinhToan.TinhCos();
-                            NganXep1.pop();
-                        }
-                        else
-                        if(NganXep1.peek().charAt(0)=='t')
-                        {
-                            String giatri="";
-                            for(int i=0;i<NganXep1.peek().length();i++)
-                            {
-                                if(NganXep1.peek().charAt(i)>='0'&&NganXep1.peek().charAt(i)<='9')
-                                    giatri+=NganXep1.peek().charAt(i);
-                            }
-                            Operation1 tinhToan=new Operation1(Double.parseDouble(giatri));
-                            b=tinhToan.TinhTan();
-                            NganXep1.pop();
-                        }
-                        else
-                        {
-                            b=Double.parseDouble(String.valueOf(NganXep1.pop()));
-                        }
-                    }
-
+                    a=Double.parseDouble(String.valueOf(NganXep1.pop()));
+                    b=Double.parseDouble(String.valueOf(NganXep1.pop()));
                     if(tam1=='+')
                         NganXep1.push(String.valueOf(a+b));
                     else
