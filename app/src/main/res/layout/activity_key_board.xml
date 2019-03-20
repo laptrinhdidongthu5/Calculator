@@ -35,8 +35,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10"
-                    android:autoSizeTextType="uniform"
                     android:orientation="vertical"
+                    android:textSize="30sp"
                     android:weightSum="10">
 
                     <Button
@@ -44,7 +44,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/fontawasome"
                         android:onClick="onClickNumber"
                         android:tag="pow("
@@ -55,7 +54,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/fontawasome"
                         android:onClick="onClickNumber"
                         android:tag="sqr("
@@ -67,8 +65,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10"
-                    android:autoSizeTextType="uniform"
                     android:orientation="vertical"
+                    android:textSize="30sp"
                     android:weightSum="10">
 
                     <Button
@@ -76,7 +74,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag="min("
                         android:text="Min" />
@@ -86,7 +83,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag="max("
                         android:text="Max" />
@@ -102,7 +98,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="60"
-            android:autoSizeTextType="uniform"
             android:orientation="vertical"
             android:weightSum="30">
 
@@ -110,16 +105,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="30"
-                android:autoSizeTextType="uniform"
                 android:orientation="vertical"
+                android:textSize="30sp"
                 android:weightSum="30">
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10"
-                    android:autoSizeTextType="uniform"
                     android:orientation="vertical"
+                    android:textSize="30sp"
                     android:weightSum="30">
 
                     <Button
@@ -127,7 +122,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag="inv("
                         android:text="1/x" />
@@ -137,7 +131,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag="abs("
                         android:text="|x|" />
@@ -147,7 +140,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag="mod("
                         android:text="Mod" />
@@ -157,8 +149,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10"
-                    android:autoSizeTextType="uniform"
                     android:orientation="vertical"
+                    android:textSize="30sp"
                     android:weightSum="30">
 
                     <Button
@@ -166,9 +158,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
-                        android:tag="sin("
+                        android:tag="sin"
                         android:text="Sin" />
 
                     <Button
@@ -176,9 +167,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
-                        android:tag="cos("
+                        android:tag="cos"
                         android:text="Cos" />
 
                     <Button
@@ -186,9 +176,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
-                        android:tag="tan("
+                        android:tag="tan"
                         android:text="Tan" />
                 </TableRow>
 
@@ -196,8 +185,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10"
-                    android:autoSizeTextType="uniform"
                     android:orientation="vertical"
+                    android:textSize="30sp"
                     android:weightSum="30">
 
                     <Button
@@ -205,7 +194,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag="("
                         android:text="(" />
@@ -215,7 +203,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag=")"
                         android:text=")" />
@@ -225,7 +212,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:autoSizeTextType="uniform"
                         android:onClick="onClickNumber"
                         android:tag=","
                         android:text="," />

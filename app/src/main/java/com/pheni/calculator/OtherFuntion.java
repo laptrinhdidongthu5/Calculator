@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
+import java.lang.Math;
 
 public class OtherFuntion {
 
