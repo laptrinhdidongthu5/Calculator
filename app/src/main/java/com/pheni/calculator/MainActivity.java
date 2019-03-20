@@ -31,7 +31,7 @@ import java.io.InputStreamReader;
 public class MainActivity extends AppCompatActivity {
 
     public EditText textEdit;                                   //Thành giải thích
-    public TextView txtExpression; //Biến này chính là cái lịch sử á
+    public TextView txt1;
 
     public static final int MY_REQUEST_CODE = 100;                //
     private static final int REQUEST_CODE_KEYBOARD = 0x9345;    //const activity
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     /**
      * event remove 1 char in edittext
      *
@@ -67,20 +68,17 @@ public class MainActivity extends AppCompatActivity {
             if (textCacul.charAt(position) == 'w' || textCacul.charAt(position) == 'r' ||
                     textCacul.charAt(position) == 's' || textCacul.charAt(position) == 'v' ||
                     textCacul.charAt(position) == 'n') {
-                int selected = Selection.getSelectionStart(textEdit.getText());
                 String text = textEdit.getText().toString();
                 text = text.substring(0, text.length() - 3);
                 textEdit.setText(text);
                 Editable etext = textEdit.getText();
-//                Selection.setSelection(etext, textEdit.length());
-                Selection.setSelection(etext, selected -3);
+                Selection.setSelection(etext, textEdit.length());
             } else {
-                int selected = Selection.getSelectionStart(textEdit.getText());
                 String text = textEdit.getText().toString();
                 text = text.substring(0, text.length() - 1);
                 textEdit.setText(text);
                 Editable etext = textEdit.getText();
-                Selection.setSelection(etext, selected -1);
+                Selection.setSelection(etext, textEdit.length());
             }
         }
     }
@@ -91,24 +89,42 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickResult(View view) {
 
-        txtExpression = (TextView) findViewById(R.id.text_expression);
-        //trước khi tính toán cho lưu nhẹ để làm lịch sử cái nhé:
-        String chuoiTinh = String.valueOf(textEdit.getText());
-        txtExpression.setText(textEdit.getText()); //Này là để hiện thị lên cái ô bên trên khi ấn bằng
-
-
+        txt1 = (TextView) findViewById(R.id.text_expression);
         double kq;
-        OtherFuntion ketqua = new OtherFuntion();
-        kq = ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
-        textEdit.setText(String.valueOf(kq));
+        String giatri = textEdit.getText().toString();
 
-        //Lưu kết quả và phép tính để hiển thị qua bên History ở đây ở đây ở đây nè
-
-        HistoryActivity.arrayList.add((HistoryActivity.arrayList.size() + 1) + ": "
-                + chuoiTinh + " = " + String.valueOf(kq) + "\n");
-
-        saveHisory();
-
+        // Tính riêng Sin
+        if (giatri.charAt(1) == 's' && giatri.length() == 7) {
+            String giatritam = "";
+            giatritam += giatri.charAt(4);
+            giatritam += giatri.charAt(5);
+            Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
+            kq = tinhToan.TinhSin();
+        } else {
+            //Tính riêng Cos
+            if (giatri.charAt(1) == 'c' && giatri.length() == 7) {
+                String giatritam = "";
+                giatritam += giatri.charAt(4);
+                giatritam += giatri.charAt(5);
+                Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
+                kq = tinhToan.TinhCos();
+            } else {
+                //Tinh riêng Tan
+                if (giatri.charAt(1) == 't' && giatri.length() == 7) {
+                    String giatritam = "";
+                    giatritam += giatri.charAt(4);
+                    giatritam += giatri.charAt(5);
+                    Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
+                    kq = tinhToan.TinhTan();
+                }
+                else {
+                    OtherFuntion ketqua = new OtherFuntion();
+                    kq = ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
+                }
+            }
+        }
+        txt1.setText(String.valueOf(kq));
+        Log.i("a", txt1.toString());
     }
 
     @Override
@@ -152,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         View view_openHistory = findViewById(R.id.btn_onHistory);
         view_openHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
             }
             fos.close();
         } catch (IOException e) {
-            Log.d("IT1006", "Lỗi ghi file history");
             e.printStackTrace();
         }
     }

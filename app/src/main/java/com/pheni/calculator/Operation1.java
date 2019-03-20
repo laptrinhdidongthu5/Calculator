@@ -1,5 +1,7 @@
 package com.pheni.calculator;
+
 import java.lang.Math;
+
 public class Operation1 {
     double toanHang;
 

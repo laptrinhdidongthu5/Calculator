@@ -12,20 +12,18 @@
         android:id="@+id/listViewHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8.8"
-        tools:ignore="MissingConstraints"
+        android:layout_weight="9"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp"
-        android:autoSizeTextType="uniform"
-        />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_clear_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.2"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@drawable/boders_button_point"
         android:text="CLEAR"
-        android:autoSizeTextType="uniform"/>
+        android:textSize="25sp"/>
 
 </LinearLayout>
