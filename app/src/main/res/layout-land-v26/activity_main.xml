@@ -48,7 +48,7 @@
                     android:background="@drawable/boders_edit_text"
                     android:digits="0123456789/*-+()sqrtminaxcbs"
                     android:gravity="center|left"
-                    android:hint="@string/your_expressioin_are"
+                    android:hint="your_expressioin_are"
                     android:inputType="textPersonName|textMultiLine"
                     android:maxLength="200"
                     android:text="@{calculator.sResult}" />
@@ -79,7 +79,9 @@
                 android:background="@drawable/button_number"
                 android:fontFamily="@font/fontawasome"
                 android:gravity="center"
-                android:text="@string/Comma"
+                android:onClick="onClickNumber"
+                android:tag="()"
+                android:text="( )"
                 android:textStyle="bold" />
 
             <TextView
@@ -202,7 +204,7 @@
                             android:gravity="center"
                             android:onClick="onClickNumber"
                             android:tag="*"
-                            android:text="@string/Start" />
+                            android:text="*" />
 
 
                     </TableRow>
@@ -302,8 +304,8 @@
                                     android:fontFamily="@font/fontawasome"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="pow("
-                                    android:text="@string/uf12b" />
+                                    android:tag="pow()"
+                                    android:text="\uf12b" />
 
                                 <Button
                                     android:id="@+id/btn_sqrt"
@@ -316,8 +318,8 @@
                                     android:fontFamily="@font/fontawasome"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="sqr("
-                                    android:text="@string/uf698" />
+                                    android:tag="sqr()"
+                                    android:text="\uf698" />
 
                                 <Button
                                     android:id="@+id/btn_random"
@@ -331,7 +333,7 @@
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
                                     android:tag="rand()"
-                                    android:text="@string/random"
+                                    android:text="random"
                                     android:textStyle="bold" />
 
                             </TableRow>
@@ -354,8 +356,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="min("
-                                    android:text="@string/min" />
+                                    android:tag="min()"
+                                    android:text="min" />
 
                                 <Button
                                     android:id="@+id/btn_max"
@@ -368,8 +370,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="max("
-                                    android:text="@string/max" />
+                                    android:tag="max()"
+                                    android:text="max" />
 
                                 <Button
                                     android:id="@+id/btn_log"
@@ -381,8 +383,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="log("
-                                    android:text="@string/log" />
+                                    android:tag="log()"
+                                    android:text="log" />
                             </TableRow>
 
                             <TableRow
@@ -404,8 +406,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="inv("
-                                    android:text="@string/_1_x" />
+                                    android:tag="inv()"
+                                    android:text="1/x" />
 
                                 <Button
                                     android:id="@+id/btn_abs"
@@ -417,8 +419,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="abs("
-                                    android:text="@string/abs_x" />
+                                    android:tag="abs()"
+                                    android:text="abs" />
 
                                 <Button
                                     android:id="@+id/btn_mod"
@@ -429,8 +431,8 @@
                                     android:autoSizeTextType="uniform"
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
-                                    android:tag="mod("
-                                    android:text="@string/mod" />
+                                    android:tag="mod()"
+                                    android:text="mod" />
                             </TableRow>
 
                             <TableRow
@@ -451,8 +453,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="sin"
-                                    android:text="@string/sin" />
+                                    android:tag="sin()"
+                                    android:text="sin" />
 
                                 <Button
                                     android:id="@+id/btn_cos"
@@ -464,8 +466,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="cos"
-                                    android:text="@string/cos" />
+                                    android:tag="cos()"
+                                    android:text="cos" />
 
                                 <Button
                                     android:id="@+id/btn_tan"
@@ -477,8 +479,8 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="tan"
-                                    android:text="@string/tan" />
+                                    android:tag="tan()"
+                                    android:text="tan" />
                             </TableRow>
 
 
@@ -678,7 +680,7 @@
                             android:gravity="center"
                             android:onClick="onClickNumber"
                             android:tag="."
-                            android:text="@string/CommaPoit"
+                            android:text="."
 
                             />
 

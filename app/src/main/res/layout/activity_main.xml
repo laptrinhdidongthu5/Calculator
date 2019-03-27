@@ -89,6 +89,8 @@
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/button_number"
                 android:fontFamily="@font/fontawasome"
+                android:onClick="onClickNumber"
+                android:tag="()"
                 android:text="( )"
                 android:textStyle="bold" />
 
