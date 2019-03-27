@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+=======
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 
     <data>
 
@@ -21,6 +27,7 @@
             android:id="@+id/linearLayout_input"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+<<<<<<< HEAD
             android:layout_gravity="top"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -28,21 +35,39 @@
             android:gravity="top"
             android:orientation="vertical"
             android:weightSum="20">
+=======
+            android:layout_margin="8dp"
+            android:layout_weight="22"
+            android:orientation="vertical"
+            android:weightSum="20">
+            <!--android:background="#000">-->
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 
             <TextView
                 android:id="@+id/text_expression"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="0dp"
                 android:layout_weight="5"
                 android:autoSizeTextType="uniform"
+=======
+                android:layout_height="4dp"
+                android:layout_weight="8"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                 android:background="#fff"
-                android:gravity="center|right"
                 android:hint="@string/_0"
+<<<<<<< HEAD
                 android:inputType="textPersonName|textMultiLine" />
+=======
+                android:textAlignment="textEnd"
+                android:textSize="35sp" />
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/text_result"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+<<<<<<< HEAD
                 android:layout_weight="15"
                 android:weightSum="20"
                 app:counterEnabled="true"
@@ -64,6 +89,17 @@
                     android:text="@{calculator.sResult}" />
 
             </android.support.design.widget.TextInputLayout>
+=======
+                android:layout_weight="11"
+                android:autofillHints=""
+                android:background="@drawable/boders_edit_text"
+                android:ems="10"
+                android:hint="Begin a your expressioin on..."
+                android:inputType="textPersonName"
+                android:text="@{calculator.sResult}" />
+
+
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
         </LinearLayout>
 
         <LinearLayout
@@ -71,10 +107,16 @@
             android:id="@+id/editTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+<<<<<<< HEAD
             android:layout_gravity="bottom"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="10"
+=======
+            android:layout_margin="8dp"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="8"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
             android:background="#fff"
             android:orientation="horizontal"
             android:weightSum="20">
@@ -148,6 +190,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="8dp"
                 android:layout_marginVertical="5dp"
                 android:layout_weight="20"
                 android:orientation="vertical"
@@ -160,7 +203,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="39.5"
                     android:orientation="vertical"
-
+                    android:textSize="30sp"
                     android:weightSum="20">
 
                     <TableRow
@@ -171,6 +214,7 @@
                         android:weightSum="10">
 
                         <Button
+<<<<<<< HEAD
                             android:id="@+id/btn_div"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -184,14 +228,20 @@
                             android:text="@string/uDiv" />
 
                         <Button
+=======
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                             android:id="@+id/btn_seven"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/button_number"
                             android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                             android:onClick="onClickNumber"
                             android:tag="7"
                             android:text="@string/_7" />
@@ -202,9 +252,13 @@
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/button_number"
                             android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                             android:onClick="onClickNumber"
                             android:tag="8"
                             android:text="@string/_8" />
@@ -215,14 +269,34 @@
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/button_number"
                             android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                             android:onClick="onClickNumber"
                             android:tag="9"
                             android:text="@string/_9" />
 
-
+                        <Button
+                            android:id="@+id/btn_div"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:autoSizeTextType="uniform"
+                            android:background="@drawable/boders_button_dau"
+                            android:gravity="center"
+                            android:onClick="onClickNumber"
+<<<<<<< HEAD
+                            android:tag="*"
+                            android:text="*" />
+=======
+                            android:tag="/"
+                            android:text="@string/uDiv"
+                            android:textSize="25sp" />
                     </TableRow>
 
                     <TableRow
@@ -231,6 +305,58 @@
                         android:layout_weight="5"
                         android:orientation="vertical"
                         android:weightSum="10">>
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
+
+                        <Button
+                            android:id="@+id/btn_four"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+<<<<<<< HEAD
+                            android:autoSizeTextType="uniform"
+                            android:background="@drawable/button_number"
+                            android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
+                            android:onClick="onClickNumber"
+                            android:tag="4"
+                            android:text="@string/_4" />
+
+                        <Button
+                            android:id="@+id/btn_five"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+<<<<<<< HEAD
+                            android:autoSizeTextType="uniform"
+                            android:background="@drawable/button_number"
+                            android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
+                            android:onClick="onClickNumber"
+                            android:tag="5"
+                            android:text="@string/_5" />
+
+                        <Button
+                            android:id="@+id/btn_six"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+<<<<<<< HEAD
+                            android:autoSizeTextType="uniform"
+                            android:background="@drawable/button_number"
+                            android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
+                            android:onClick="onClickNumber"
+                            android:tag="6"
+                            android:text="@string/_6" />
 
                         <Button
                             android:id="@+id/btn_mul"
@@ -242,49 +368,13 @@
                             android:background="@drawable/boders_button_dau"
                             android:gravity="center"
                             android:onClick="onClickNumber"
-                            android:tag="*"
-                            android:text="*" />
-
-                        <Button
-                            android:id="@+id/btn_four"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:autoSizeTextType="uniform"
-                            android:background="@drawable/button_number"
-                            android:gravity="center"
-                            android:onClick="onClickNumber"
-                            android:tag="4"
-                            android:text="@string/_4" />
-
-                        <Button
-                            android:id="@+id/btn_five"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:autoSizeTextType="uniform"
-                            android:background="@drawable/button_number"
-                            android:gravity="center"
-                            android:onClick="onClickNumber"
-                            android:tag="5"
-                            android:text="@string/_5" />
-
-                        <Button
-                            android:id="@+id/btn_six"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:autoSizeTextType="uniform"
-                            android:background="@drawable/button_number"
-                            android:gravity="center"
-                            android:onClick="onClickNumber"
-                            android:tag="6"
-                            android:text="@string/_6" />
-
-
+<<<<<<< HEAD
+                            android:tag="-"
+                            android:text="@string/uSub" />
+=======
+                            android:tag="x"
+                            android:text="@string/x"
+                            android:textSize="25sp" />
                     </TableRow>
 
                     <TableRow
@@ -293,19 +383,7 @@
                         android:layout_weight="5"
                         android:orientation="vertical"
                         android:weightSum="10">>
-
-                        <Button
-                            android:id="@+id/btn_sub"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="2.5"
-                            android:autoSizeTextType="uniform"
-                            android:background="@drawable/boders_button_dau"
-                            android:gravity="center"
-                            android:onClick="onClickNumber"
-                            android:tag="-"
-                            android:text="@string/uSub" />
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 
                         <Button
                             android:id="@+id/btn_one"
@@ -313,9 +391,13 @@
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/button_number"
                             android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                             android:onClick="onClickNumber"
                             android:tag="1"
                             android:text="@string/_1" />
@@ -326,9 +408,13 @@
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/button_number"
                             android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                             android:onClick="onClickNumber"
                             android:tag="2"
                             android:text="@string/_2" />
@@ -339,14 +425,28 @@
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/button_number"
                             android:gravity="center"
+=======
+                            android:background="@drawable/boders_button"
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                             android:onClick="onClickNumber"
                             android:tag="3"
                             android:text="@string/_3" />
 
-
+                        <Button
+                            android:id="@+id/btn_sub"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2.5"
+                            android:background="@drawable/boders_button_dau"
+                            android:onClick="onClickNumber"
+                            android:tag="-"
+                            android:text="@string/uSub"
+                            android:textSize="25sp" />
                     </TableRow>
 
                     <TableRow
@@ -357,18 +457,25 @@
                         android:weightSum="10">>
 
                         <Button
-                            android:id="@+id/button18"
+                            android:id="@+id/btn_zero"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/boders_button_dau"
                             android:gravity="center"
                             android:onClick="onClickNumber"
                             android:tag="+"
                             android:text="@string/uCong" />
-
+=======
+                            android:background="@drawable/boders_button"
+                            android:onClick="onClickNumber"
+                            android:tag="0"
+                            android:text="@string/_0"
+                            android:textSize="25sp" />
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 
                         <Button
                             android:id="@+id/btn_dot"
@@ -386,24 +493,32 @@
                             />
 
                         <Button
-                            android:id="@+id/btn_zero"
+                            android:id="@+id/button17"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/button_number"
                             android:gravity="center"
                             android:onClick="onClickNumber"
                             android:tag="0"
                             android:text="@string/_0" />
+=======
+                            android:background="@drawable/boders_button_equal"
+                            android:onClick="onClickResult"
+                            android:text="@string/uEqual"
+                            android:textSize="25sp" />
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 
                         <Button
-                            android:id="@+id/button17"
+                            android:id="@+id/button18"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="2.5"
+<<<<<<< HEAD
                             android:autoSizeTextType="uniform"
                             android:background="@drawable/boders_button_equal"
                             android:gravity="center"
@@ -411,6 +526,13 @@
                             android:text="@string/uEqual" />
 
 
+=======
+                            android:background="@drawable/boders_button_dau"
+                            android:onClick="onClickNumber"
+                            android:tag="+"
+                            android:text="@string/uCong"
+                            android:textSize="25sp" />
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                     </TableRow>
 
 

@@ -1,22 +1,29 @@
 package com.pheni.calculator;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.ContextWrapper;
+=======
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.Selection;
 import android.util.Log;
 import android.view.View;
+<<<<<<< HEAD
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+=======
+import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.Toast;
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 
 import com.pheni.calculator.databinding.ActivityMainBinding;
 
@@ -31,6 +38,7 @@ import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     public EditText textEdit;                                   //Thành giải thích??
     public TextView txt1;
     public Button btnComma;
@@ -44,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
+=======
+    public EditText textEdit;
+
+    public static final int MY_REQUEST_CODE = 100;
+    private static final int REQUEST_CODE_KEYBOARD = 0x9345;
+
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
     public void onClickNumber(View view) {
         String text = view.getTag().toString();
 
@@ -52,29 +67,43 @@ public class MainActivity extends AppCompatActivity {
 
         textEdit.setText(a.substring(0, pos) + text + a.substring(pos, a.length()));
 
-        Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
+        Editable etext = textEdit.getText();
         Selection.setSelection(etext, pos + 1);
 
     }
 
+<<<<<<< HEAD
     /**
      * event remove 1 char in edittext
      *
      * @param view
      */
+=======
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
     public void onClickRemove(View view) {
         String textCacul = textEdit.getText().toString();
         if (textCacul.length() != 0) {
             int position = textCacul.length() - 1;
+<<<<<<< HEAD
             if (textCacul.charAt(position) == 'w' || textCacul.charAt(position) == 'r' ||
                     textCacul.charAt(position) == 's' || textCacul.charAt(position) == 'v' ||
                     textCacul.charAt(position) == 'n') {
+=======
+            if(textCacul.charAt(position) == 'w' || textCacul.charAt(position) == 'r' ||
+                    textCacul.charAt(position) == 's' || textCacul.charAt(position) == 'v' ||
+                    textCacul.charAt(position) == 'n'){
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                 String text = textEdit.getText().toString();
                 text = text.substring(0, text.length() - 3);
                 textEdit.setText(text);
                 Editable etext = textEdit.getText();
                 Selection.setSelection(etext, textEdit.length());
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                 String text = textEdit.getText().toString();
                 text = text.substring(0, text.length() - 1);
                 textEdit.setText(text);
@@ -89,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickResult(View view) {
+<<<<<<< HEAD
 
         txt1 = (TextView) findViewById(R.id.text_expression);
         double kq;
@@ -125,20 +155,28 @@ public class MainActivity extends AppCompatActivity {
         }
         txt1.setText(String.valueOf(kq));
         Log.i("a", txt1.toString());
+=======
+        Expression exp = new Expression(textEdit.getText().toString());
+
+        String a = exp.getPrioritize();
+
+        Log.i("a",a);
+
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE_KEYBOARD) {
-            if (resultCode == Activity.RESULT_OK) {
+        if(requestCode == REQUEST_CODE_KEYBOARD) {
+            if(resultCode == Activity.RESULT_OK) {
                 String feedback = data.getStringExtra("feedback");
 
                 int pos = textEdit.getSelectionStart();
                 String a = textEdit.getText().toString();
 
-                textEdit.setText(a.substring(0, pos) + feedback + a.substring(pos, a.length()));
+                textEdit.setText(a.substring(0, pos)  + feedback + a.substring(pos, a.length()));
 
                 Editable etext = textEdit.getText();
                 Selection.setSelection(etext, pos + feedback.length());
@@ -169,15 +207,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         textEdit = findViewById(R.id.text_result);
-        //textEdit.setShowSoftInputOnFocus(false); //không sử dụng được ở API 19: fix lại ở disableinputRetaincursor() method:
-        //hideKeyboard(this);//this ở đây chính là một MainActivity but it is not working
-        disableinputRetaincursor(textEdit); //it working success!
+        textEdit.setShowSoftInputOnFocus(false);
 
+<<<<<<< HEAD
         View view_openHistory = findViewById(R.id.btn_onHistory);
         view_openHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+=======
+        View view_open = findViewById(R.id.btn_onKeyBoard);
+        view_open.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,KeyBoard.class);
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
                 startActivityForResult(intent, REQUEST_CODE_KEYBOARD);// Activity is started with requestCode 2
             }
         });
@@ -197,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
         HistoryActivity.arrayList.clear();
         super.onDestroy();
     }
+<<<<<<< HEAD
 
     /**
      * chính là load arrayList
@@ -280,4 +325,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+=======
+>>>>>>> f7852af34f763e5d1c9ee3aa73b067ba4f4b54e8
 }
