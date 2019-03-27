@@ -19,4 +19,20 @@
     <string name="_6">6</string>
     <string name="uf00d"></string>
     <string name="uEqual">=</string>
+    <string name="your_expressioin_are">Your expressioin are...</string>
+    <string name="Comma">( )</string>
+    <string name="tan">Tan</string>
+    <string name="mod">Mod</string>
+    <string name="cos">Cos</string>
+    <string name="_1_x">1/x</string>
+    <string name="min">min</string>
+    <string name="log">log</string>
+    <string name="CommaPoit">. [ , ]</string>
+    <string name="sin">Sin</string>
+    <string name="abs_x">|x|</string>
+    <string name="max">max</string>
+    <string name="random">random</string>
+    <string name="Start">*</string>
+    <string name="uf698"></string>
+    <string name="uf12b"></string>
 </resources>

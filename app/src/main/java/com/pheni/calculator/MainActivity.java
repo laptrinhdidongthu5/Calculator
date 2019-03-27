@@ -14,6 +14,7 @@ import android.text.Selection;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,18 +24,19 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
-    public EditText textEdit;                                   //Thành giải thích
+    public EditText textEdit;                                   //Thành giải thích??
     public TextView txt1;
+    public Button btnComma;
 
-    public static final int MY_REQUEST_CODE = 100;                //
-    private static final int REQUEST_CODE_KEYBOARD = 0x9345;    //const activity
+    public static final int MY_REQUEST_CODE = 100;
+    private static final int REQUEST_CODE_KEYBOARD = 0x9345;    //const activity?
 
 
     /**
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         Selection.setSelection(etext, pos + 1);
 
     }
-
 
     /**
      * event remove 1 char in edittext
@@ -116,8 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     giatritam += giatri.charAt(5);
                     Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
                     kq = tinhToan.TinhTan();
-                }
-                else {
+                } else {
                     OtherFuntion ketqua = new OtherFuntion();
                     kq = ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
                 }
@@ -153,21 +153,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        btnComma = findViewById(R.id.btn_dot);
+        btnComma.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                int pos = textEdit.getSelectionStart();
+                String a = textEdit.getText().toString();
+
+                textEdit.setText(a.substring(0, pos) + " , " + a.substring(pos, a.length()));
+
+                Editable etext = textEdit.getText();
+                Selection.setSelection(etext, pos + " , ".length());
+                return true;
+            }
+        });
+
         textEdit = findViewById(R.id.text_result);
         //textEdit.setShowSoftInputOnFocus(false); //không sử dụng được ở API 19: fix lại ở disableinputRetaincursor() method:
         //hideKeyboard(this);//this ở đây chính là một MainActivity but it is not working
         disableinputRetaincursor(textEdit); //it working success!
 
-        View view_open = findViewById(R.id.btn_onKeyBoard);
-
-        view_open.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, KeyBoard.class);
-                startActivityForResult(intent, REQUEST_CODE_KEYBOARD);// Activity is started with requestCode 2
-
-            }
-        });
         View view_openHistory = findViewById(R.id.btn_onHistory);
         view_openHistory.setOnClickListener(new View.OnClickListener() {
             @Override
