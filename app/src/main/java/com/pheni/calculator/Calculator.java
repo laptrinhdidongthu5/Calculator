@@ -3,8 +3,8 @@ package com.pheni.calculator;
 public class Calculator {
     public static double dNumFirst = 0;
     public static double dNumSecond = 0;
-    public static String sResult = "0";
-    public static String sChuoiTinh = "0";
+    public static String sResult = "";
+    public static String sChuoiTinh = "";
 
     public Calculator() {
     }
