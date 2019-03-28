@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
     public TextView txtViewExpression;
     public Button btnComma; //Xử lý sự kiện longClickLisenter của dấu . và , chung 1 nút btn
 
+    public String regNum = "[0-9]";
+    public String regDau = "[+\\-*\\/]";
+    public String regSinCos = "\\w{3,4}[(][)]";
+
     /**
      * event add number and calculator in edittext
      *
@@ -76,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
             cacTruongHopDacBiet();
             if (Calculator.sResult != temp) {
                 return;
-            } else
-                dauNgoac();
-            if (Calculator.sResult != temp) {
-                return;
             }
         }
     }
@@ -99,31 +99,34 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void cacTruongHopDauCuoiChuoi() {
-        String reg = "[0-9]";
         //Xử lý validate cho đầu và cuối
         if (Calculator.iPos != 0) {//chỉ lấy khi nó không phải đầu
             Calculator.sStart = Calculator.sResult.substring(Calculator.iPos - 1, Calculator.iPos);
         } else {//Tức là đầu chuỗi phải nhập số rồi
-            if (Calculator.sTextInput.matches(reg) || Calculator.sTextInput.matches("[(][)]")
-                    || Calculator.sTextInput.matches("\\w{3,4}[(][)]")) {
+            if (Calculator.sTextInput.matches(regNum)
+                    || Calculator.sTextInput.matches("[(][)]")
+                    || Calculator.sTextInput.matches(regSinCos)) {
                 nhapTiep();
                 return;
             }
         }
+
+
         if (Calculator.iPos != Calculator.sResult.length()) {//lấy khi nó không phải cuối
             Calculator.sEnd = Calculator.sResult.substring(Calculator.iPos, Calculator.iPos + 1);
             //Log.d("IT1006", "validateEditText: " + Calculator.sStart + "  " + Calculator.sResult);
         } else {//Nó cuối thì coi trước nó là gì là xong
-            if ((Calculator.sStart.matches(reg))
-                    && (Calculator.sTextInput.matches("[+\\-*\\/]") || Calculator.sTextInput.matches(reg))) {
+            if ((Calculator.sStart.matches(regNum)) && (Calculator.sTextInput.matches(regDau)
+                    || Calculator.sTextInput.matches(regNum))) {
                 //Nếu trước nó là số thì nhập thoải mái nếu không thì chỉ cho nhập số
                 nhapTiep();
                 return;
-            } else if (Calculator.sStart.matches("[+\\-*\\/]") &&
-                    !Calculator.sTextInput.matches("[+\\-*\\/]")) {//+-*/ thì cho nhập thoải mái
+            } else if (Calculator.sStart.matches(regDau)
+                    && !Calculator.sTextInput.matches(regDau)) {//+-*/ thì cho nhập thoải mái
                 nhapTiep();
                 return;
-            } else if (Calculator.sStart.matches("[)]") && Calculator.sTextInput.matches("[+\\-*\\/]")) {
+            } else if (Calculator.sStart.matches("[)]")
+                    && Calculator.sTextInput.matches(regDau)) {
                 nhapTiep();
                 return;
             }
@@ -132,42 +135,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cacTruongHopDacBiet() {
-        String reg = "[0-9]";
-        boolean matchStart = Calculator.sStart.matches(reg);
-        boolean matchEnd = Calculator.sEnd.matches(reg);
-        boolean matchTextInput = Calculator.sTextInput.matches(reg);
         //Các trường hợp đặc biệt
-        if (!matchStart || (!matchEnd && !matchStart)) {//Trước con trỏ k phải số và sau trỏ không phải số
-            if (matchTextInput) {//chỉ nhập số
+        if (Calculator.sStart.matches(regNum)) {
+            if (Calculator.sTextInput.matches(regDau)
+                    || Calculator.sTextInput.matches(regNum)) {
+                nhapTiep();
+                return;
+            }
+        } else if (Calculator.sStart.matches(regDau)) {
+            if (Calculator.sTextInput.matches("[(][)]")
+                    || Calculator.sTextInput.matches(regSinCos)
+                    || Calculator.sTextInput.matches(regNum))
+                nhapTiep();
+            return;
+        } else if (Calculator.sStart.matches("[)]")) {
+            if (Calculator.sTextInput.matches(regDau)) {
+                nhapTiep();
+                return;
+            }
+        } else if (Calculator.sStart.matches("[(]") || Calculator.sStart.matches("[,]")) {
+            if (Calculator.sTextInput.matches(regNum)
+                    || Calculator.sTextInput.matches(regSinCos)
+                    || Calculator.sTextInput.matches("[(][)]")) {
                 nhapTiep();
                 return;
             }
         }
-        if (((matchEnd && matchStart) || (matchStart && !matchEnd)
-                || (matchStart && Calculator.sEnd.matches("[)]")))
-                && (Calculator.sTextInput.matches("[(][)]") ||
-                !Calculator.sTextInput.matches("\\w{3,4}[(][)]"))) {
-            nhapTiep();
-            return;
-        }
-        return;
     }
-
-    public void dauNgoac() {
-        //TH:
-        //Mở dấu ngoặc đầu tiên
-        //Sau dấu + - * /
-        String rex = "\\w{3,4}[(]";
-        String rexDau = "[+\\-*\\/]";
-        //Nếu là dấu ngoặc thì cho con trỏ vào giữa, xong!
-        if ((Calculator.sTextInput == "()" || Calculator.sTextInput.matches(rex)) && (!Calculator.sStart.matches("[0-9]") ||
-                (Calculator.sStart.matches(rexDau)))) {//Hoặc trước là dấu + - * /
-            nhapTiep();
-            return;
-        }
-        return;
-    }
-
 
     public void onClickResult(View view) {
 
