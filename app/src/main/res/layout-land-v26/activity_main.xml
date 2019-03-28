@@ -680,7 +680,7 @@
                             android:gravity="center"
                             android:onClick="onClickNumber"
                             android:tag="."
-                            android:text="."
+                            android:text=". [,]"
 
                             />
 

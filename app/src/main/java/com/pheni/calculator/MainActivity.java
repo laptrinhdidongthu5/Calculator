@@ -44,110 +44,128 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickNumber(View view) {
-        String text = view.getTag().toString();//Lấy các thuộc tính để gán vào biến tạm
-
-        int pos = textEdit.getSelectionStart();
-        String a = textEdit.getText().toString();
+        Calculator.sTextInput = view.getTag().toString();//Lấy các thuộc tính để gán vào biến tạm
+        Calculator.iPos = textEdit.getSelectionStart();
+        Calculator.sResult = textEdit.getText().toString();
 
         //Validate để chuỗi nhập vào luôn đúng đắn
-        String validate = validateEditText(a, pos, text);
-        textEdit.setText(validate);
+        this.validateEditText();
+
+        textEdit.setText(Calculator.sResult);
         Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
-
-
-        String rex = "\\w{3,4}[(]";
-        textEdit.findFocus();
-        if (validate != a) {//Trường hợp validate gặp sai phạm
-            Selection.setSelection(etext, pos + 1);
-        } else if (text == "()" || text.matches(rex)) {
-            Selection.setSelection(etext, pos + text.length() - 1);
-        } else {
-            Selection.setSelection(etext, pos);
-        }
-
+        Selection.setSelection(etext, Calculator.iPos);
         textEdit.requestFocus();
     }
 
     /**
-     * @param textEdit  :Expression
-     * @param pos       :vị trí con trỏ
-     * @param textInput :ký tự nhập tiếp theo
      * @return
      */
-    public String validateEditText(String textEdit, int pos, String textInput) {
+    public void validateEditText() {
         //Cập nhật chuỗi hiện tại
-        String result = textEdit;
-        String reg = "[0-9]";
         //TrH con trỏ có thể đứng:
         //Đầu chuỗi          //Cuối chuối         //Giữa chuỗi:
         //Giữa 2 số          //Giữa 1 số, 1 dấu         //Giữa 1 dấu, 1 số
         //Thuật toán là nếu trước đó là số và sau nó là số thì nhập thoải mái
         //Nếu trước nó không phải số thì chỉ được nhập số
         //Nếu sau nó không phải số thì chỉ được nhập số
-        String start = "";
-        String end = "";
-        //Xử lý validate cho đầu và cuối
-        if (pos != 0) {//chỉ lấy khi nó không phải đầu
-            start = textEdit.substring(pos - 1, pos);
-        } else {//Tức là đầu chuỗi phải nhập số rồi
-            if (textInput.matches(reg) || textInput.matches("[()]") || textInput.matches("\\w{3,4}[(]")) {
-                result = textEdit.substring(0, pos) + textInput + textEdit.substring(pos, textEdit.length());
-                return result;
+        String temp = Calculator.sResult;
+        cacTruongHopDauCuoiChuoi();
+        if (Calculator.sResult != temp) {
+            return;
+        } else {
+            cacTruongHopDacBiet();
+            if (Calculator.sResult != temp) {
+                return;
+            } else
+                dauNgoac();
+            if (Calculator.sResult != temp) {
+                return;
             }
         }
-        if (pos != textEdit.length()) {//lấy khi nó không phải cuối
-            end = textEdit.substring(pos, pos + 1);
-            Log.d("IT1006", "validateEditText: " + start + "  " + textEdit);
-        } else {//Nó cuối thì coi trước nó là gì là xong
-            if (start.matches(reg) && !textInput.matches("[()]}")) {//Nếu trước nó là số thì nhập thoải mái nếu không thì chỉ cho nhập số
-                result = textEdit.substring(0, pos) + textInput + textEdit.substring(pos, textEdit.length());
-                return result;
-            } else {
-                if (textInput.matches(reg)) {
-                    result = textEdit.substring(0, pos) + textInput + textEdit.substring(pos, textEdit.length());
-                    return result;
-                }
-            }
-        }
-
-        boolean matchStart = start.matches(reg);
-        boolean matchEnd = end.matches(reg);
-        boolean matchTextInput = textInput.matches(reg);
-        //Các trường hợp đặc biệt
-        if (!matchStart || !matchEnd || (!matchEnd && !matchStart)) {//Trước con trỏ k phải số và sau trỏ không phải số
-            if (matchTextInput) {//chỉ nhập số
-                result = textEdit.substring(0, pos) + textInput + textEdit.substring(pos, textEdit.length());
-                return result;
-            }
-
-        } else if ((matchEnd && matchStart) || (matchStart && !matchEnd)
-                || (matchStart && end.matches("[)]"))) {
-            result = textEdit.substring(0, pos) + textInput + textEdit.substring(pos, textEdit.length());
-            return result;
-        }
-
-
-        dauNgoac(textEdit, pos, textInput, start, end);
-
-        return result;
     }
 
-    public String dauNgoac(String textEdit, int pos, String textInput, String strStart, String strEnd) {
+    /**
+     * Nhập tiếp ký tự vừa nhấn bên giao diện
+     */
+    public void nhapTiep() {
+        Calculator.sResult = Calculator.sResult.substring(0, Calculator.iPos) + Calculator.sTextInput +
+                Calculator.sResult.substring(Calculator.iPos, Calculator.sResult.length());
+        if (Calculator.sTextInput.length() == 1) {//Trường hợp nhập 1 số hoặc 1 ký tự tiếp theo
+            Calculator.iPos += 1;
+        } else {//Trường hợp nhập min,max
+            Calculator.iPos += Calculator.sTextInput.length() - 1;
+        }
+    }
+
+
+    public void cacTruongHopDauCuoiChuoi() {
+        String reg = "[0-9]";
+        //Xử lý validate cho đầu và cuối
+        if (Calculator.iPos != 0) {//chỉ lấy khi nó không phải đầu
+            Calculator.sStart = Calculator.sResult.substring(Calculator.iPos - 1, Calculator.iPos);
+        } else {//Tức là đầu chuỗi phải nhập số rồi
+            if (Calculator.sTextInput.matches(reg) || Calculator.sTextInput.matches("[(][)]")
+                    || Calculator.sTextInput.matches("\\w{3,4}[(][)]")) {
+                nhapTiep();
+                return;
+            }
+        }
+        if (Calculator.iPos != Calculator.sResult.length()) {//lấy khi nó không phải cuối
+            Calculator.sEnd = Calculator.sResult.substring(Calculator.iPos, Calculator.iPos + 1);
+            //Log.d("IT1006", "validateEditText: " + Calculator.sStart + "  " + Calculator.sResult);
+        } else {//Nó cuối thì coi trước nó là gì là xong
+            if ((Calculator.sStart.matches(reg))
+                    && (Calculator.sTextInput.matches("[+\\-*\\/]") || Calculator.sTextInput.matches(reg))) {
+                //Nếu trước nó là số thì nhập thoải mái nếu không thì chỉ cho nhập số
+                nhapTiep();
+                return;
+            } else if (Calculator.sStart.matches("[+\\-*\\/]") &&
+                    !Calculator.sTextInput.matches("[+\\-*\\/]")) {//+-*/ thì cho nhập thoải mái
+                nhapTiep();
+                return;
+            } else if (Calculator.sStart.matches("[)]") && Calculator.sTextInput.matches("[+\\-*\\/]")) {
+                nhapTiep();
+                return;
+            }
+            return;
+        }
+    }
+
+    public void cacTruongHopDacBiet() {
+        String reg = "[0-9]";
+        boolean matchStart = Calculator.sStart.matches(reg);
+        boolean matchEnd = Calculator.sEnd.matches(reg);
+        boolean matchTextInput = Calculator.sTextInput.matches(reg);
+        //Các trường hợp đặc biệt
+        if (!matchStart || (!matchEnd && !matchStart)) {//Trước con trỏ k phải số và sau trỏ không phải số
+            if (matchTextInput) {//chỉ nhập số
+                nhapTiep();
+                return;
+            }
+        }
+        if (((matchEnd && matchStart) || (matchStart && !matchEnd)
+                || (matchStart && Calculator.sEnd.matches("[)]")))
+                && (Calculator.sTextInput.matches("[(][)]") ||
+                !Calculator.sTextInput.matches("\\w{3,4}[(][)]"))) {
+            nhapTiep();
+            return;
+        }
+        return;
+    }
+
+    public void dauNgoac() {
         //TH:
         //Mở dấu ngoặc đầu tiên
         //Sau dấu + - * /
-
-        String result = textEdit;
         String rex = "\\w{3,4}[(]";
         String rexDau = "[+\\-*\\/]";
         //Nếu là dấu ngoặc thì cho con trỏ vào giữa, xong!
-        if (((textInput == "()" || textInput.matches(rex)) && !strStart.matches("[0-9]")) ||
-                (strStart.matches(rexDau))) {//Hoặc trước là dấu + - * /
-            //(), sqrt(), matchStart = false
-            result = textEdit.substring(0, pos) + textInput + textEdit.substring(pos, textEdit.length());
-            return result;
+        if ((Calculator.sTextInput == "()" || Calculator.sTextInput.matches(rex)) && (!Calculator.sStart.matches("[0-9]") ||
+                (Calculator.sStart.matches(rexDau)))) {//Hoặc trước là dấu + - * /
+            nhapTiep();
+            return;
         }
-        return result;
+        return;
     }
 
 
@@ -160,27 +178,92 @@ public class MainActivity extends AppCompatActivity {
         //trước khi tính toán cho lưu nhẹ để làm lịch sử cái nhé:
         String chuoiTinh = String.valueOf(textEdit.getText());
 
-        // Tính riêng Sin
-        if (giatri.charAt(1) == 's' && giatri.length() == 7) {
+        kq = sinCosTanPrivate();
+
+        //Xử lý kq.string đã mới in ra;
+        xuLyChuoiInRa(Double.toString(kq));
+
+        Calculator.sExpression = chuoiTinh + "= " + Calculator.sResult;
+        txtViewExpression.setText(Calculator.sExpression);
+        Log.i("a", txtViewExpression.toString());
+
+        textEdit.setText(Calculator.sResult);
+        Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
+        textEdit.requestFocus();
+        Calculator.sResult = textEdit.getText().toString();
+        Selection.setSelection(etext, Calculator.sResult.length());
+
+        //Lưu kết quả và phép tính để hiển thị qua bên History ở đây ở đây ở đây nè
+        HistoryActivity.arrayList.add((HistoryActivity.arrayList.size() + 1) + ": "
+                + chuoiTinh + " = " + String.valueOf(kq));
+
+        saveHisory();
+    }
+
+
+    public void xuLyChuoiInRa(String kq) {
+        if (kq.indexOf(".") != -1) {
+            //Nếu chuỗi cuối là .0 thì xóa nó đi thôi
+            if (kq.endsWith(".0")) {
+                kq = kq.substring(0, kq.length() - 2);
+            }
+        }
+        Calculator.sResult = kq;
+        Calculator.iPos = Calculator.sResult.length();
+    }
+
+    public boolean kiemTraTonTaiSinCos(String giaTri) {
+        int sum = giaTri.indexOf("s")
+                + giaTri.indexOf("r")
+                + giaTri.indexOf("m")
+                + giaTri.indexOf("l")
+                + giaTri.indexOf("i")
+                + giaTri.indexOf("a")
+                + giaTri.indexOf("c")
+                + giaTri.indexOf("t");
+        if (sum != -8)
+            return true;
+        else
+            return false;
+    }
+
+    public Double sinCosTanPrivate() {
+        String giaTri = Calculator.sResult;
+        Double kq = 0.0;
+        //Dùng thuật toán của thanh niên Công tính hết giá trị trong dấu ngoặc của sin.
+        //Kiểm tra nó tồn tại bằng kiểm tra phần tử sin() cos(), tan(), min(), max(), log()
+        //bằng indexOf(string)
+        //Nếu thấy thì tính rồi trả về chuỗi mới rồi tiếp tục kiểm tra lại chuỗi xem còn tồn tại hông
+        //Thuật toán tính là khi phát hiển phần tử, thì lấy được vị trí -->pos
+        //Sau đó tiến hành tách chuỗi bên trong dấu ngoặc(cũng dùng indesOF để thấy dấu ) đầu tiên trong chuỗi
+        //Tính sau đó lại ghép lại vào chuỗi(thay thế sqr(...) thành một giá trị và 2 dấu bao lại như(value)
+        //Tiếp tục như thế cho đến khi không thấy
+        //thì thoát ra và trả chuỗi này thành result và gọi hàm tính thêm một lần nữa
+//
+//        while (kiemTraTonTaiSinCos(giaTri)) {
+//
+//        }
+
+        if (giaTri.charAt(1) == 's' && giaTri.length() == 7) {
             String giatritam = "";
-            giatritam += giatri.charAt(4);
-            giatritam += giatri.charAt(5);
+            giatritam += giaTri.charAt(4);
+            giatritam += giaTri.charAt(5);
             Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
             kq = tinhToan.TinhSin();
         } else {
             //Tính riêng Cos
-            if (giatri.charAt(1) == 'c' && giatri.length() == 7) {
+            if (giaTri.charAt(1) == 'c' && giaTri.length() == 7) {
                 String giatritam = "";
-                giatritam += giatri.charAt(4);
-                giatritam += giatri.charAt(5);
+                giatritam += giaTri.charAt(4);
+                giatritam += giaTri.charAt(5);
                 Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
                 kq = tinhToan.TinhCos();
             } else {
                 //Tinh riêng Tan
-                if (giatri.charAt(1) == 't' && giatri.length() == 7) {
+                if (giaTri.charAt(1) == 't' && giaTri.length() == 7) {
                     String giatritam = "";
-                    giatritam += giatri.charAt(4);
-                    giatritam += giatri.charAt(5);
+                    giatritam += giaTri.charAt(4);
+                    giatritam += giaTri.charAt(5);
                     Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
                     kq = tinhToan.TinhTan();
                 } else {
@@ -189,16 +272,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        txtViewExpression.setText(chuoiTinh + "= " + Double.toString(kq));
-        Log.i("a", txtViewExpression.toString());
-
-        textEdit.setText(Double.toString(kq));
-
-        //Lưu kết quả và phép tính để hiển thị qua bên History ở đây ở đây ở đây nè
-        HistoryActivity.arrayList.add((HistoryActivity.arrayList.size() + 1) + ": "
-                + chuoiTinh + " = " + String.valueOf(kq) + "\n");
-
-        saveHisory();
+        return kq;
     }
 
 
@@ -215,10 +289,11 @@ public class MainActivity extends AppCompatActivity {
                 int pos = textEdit.getSelectionStart();
                 String a = textEdit.getText().toString();
 
-                textEdit.setText(a.substring(0, pos) + " , " + a.substring(pos, a.length()));
+                int leng = a.length();
+                textEdit.setText(a.substring(0, pos) + "," + a.substring(pos, leng));
 
                 Editable etext = textEdit.getText();
-                Selection.setSelection(etext, pos + " , ".length());
+                Selection.setSelection(etext, pos + ",".length());
                 return true;
             }
         });
@@ -286,25 +361,62 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickRemove(View view) {
-        String textCacul = textEdit.getText().toString();
-        if (textCacul.length() != 0) {
-            int position = textCacul.length() - 1;
-            if (textCacul.charAt(position) == 'w' || textCacul.charAt(position) == 'r' ||
-                    textCacul.charAt(position) == 's' || textCacul.charAt(position) == 'v' ||
-                    textCacul.charAt(position) == 'n') {
-                String text = textEdit.getText().toString();
-                text = text.substring(0, text.length() - 3);
-                textEdit.setText(text);
-                Editable etext = textEdit.getText();
-                Selection.setSelection(etext, textEdit.length());
-            } else {
-                String text = textEdit.getText().toString();
-                text = text.substring(0, text.length() - 1);
-                textEdit.setText(text);
-                Editable etext = textEdit.getText();
-                Selection.setSelection(etext, textEdit.length());
+        //Cập nhật lại các thông số:
+        Calculator.iPos = textEdit.getSelectionStart();
+        Calculator.sResult = textEdit.getText().toString();
+
+        if (Calculator.sResult.length() != 0) {
+            //Xóa 1 chuỗi ký tự là các hàm min, max,....
+            String reg = "\\w{3,4}[(]";
+            if (Calculator.iPos > 4 &&
+                    Calculator.sResult.substring(Calculator.iPos - 4, Calculator.iPos).matches(reg)) {
+                //Trường hợp trước con trỏ là một hàm thì xóa 4 ký tự
+                xoaChuoiKyTu(4);
+
+                Calculator.iPos -= 4;
             }
+            if (Calculator.iPos > 2 &&
+                    Calculator.sResult.substring(Calculator.iPos - 2, Calculator.iPos) == "()") {
+                //Xóa Dấu ()
+                xoaChuoiKyTu(2);
+                Calculator.iPos -= 2;
+            } else {
+                //Xóa 1 ký tự ở phía trước con trỏ
+                //Xóa ở giữa phải cập nhật lại chuỗi, dùng cắt chuỗi nhanh hơn
+                xoaChuoiKyTu(1);
+                Calculator.iPos -= 1;
+            }
+            Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
+            textEdit.requestFocus();
+            Calculator.sResult = textEdit.getText().toString();
+            Selection.setSelection(etext, Calculator.iPos);
         }
+//        if (textCacul.length() != 0) {
+//            int position = textCacul.length() - 1;
+//            if (textCacul.charAt(position) == 'w' || textCacul.charAt(position) == 'r' ||
+//                    textCacul.charAt(position) == 's' || textCacul.charAt(position) == 'v' ||
+//                    textCacul.charAt(position) == 'n') {
+//                String text = textEdit.getText().toString();
+//                text = text.substring(0, text.length() - 3);
+//                textEdit.setText(text);
+//                Editable etext = textEdit.getText();
+//                Selection.setSelection(etext, textEdit.length());
+//            } else {
+//                String text = textEdit.getText().toString();
+//                text = text.substring(0, text.length() - 1);
+//                textEdit.setText(text);
+//                Editable etext = textEdit.getText();
+//                Selection.setSelection(etext, textEdit.length());
+//            }
+//        }
+    }
+
+    public void xoaChuoiKyTu(int baoNhiuKyTu) {
+        String sDau = Calculator.sResult.substring(0, Calculator.iPos - baoNhiuKyTu);
+        int length = Calculator.sResult.length();
+        String sCuoi = Calculator.sResult.substring(Calculator.iPos, length);
+        Calculator.sResult = sDau + sCuoi;
+        textEdit.setText(Calculator.sResult);
     }
 
 
@@ -384,7 +496,7 @@ public class MainActivity extends AppCompatActivity {
             fos.write("".getBytes());
             for (int i = 0; i < HistoryActivity.arrayList.size(); i++) {
                 fos.write(HistoryActivity.arrayList.get(i).getBytes());
-                //   fos.write("\n".getBytes());
+                fos.write("\n".getBytes());
             }
             fos.close();
         } catch (IOException e) {
