@@ -22,6 +22,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
@@ -68,12 +70,22 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+        //Trước khi in ra thì đảo ngược lại mảng,
+        Collections.reverse(HistoryActivity.arrayList);
+
         lvHistory = (ListView) findViewById(R.id.listViewHistory);
         ArrayAdapter arrayAdapter = new ArrayAdapter(HistoryActivity.this,
                 android.R.layout.simple_list_item_1, HistoryActivity.arrayList);
         lvHistory.setAdapter(arrayAdapter);
+
     }
 
+    @Override
+    public void onDestroy() {
+        //Trước khi thoát ra thì đảo ngược lại mảng,
+        Collections.reverse(HistoryActivity.arrayList);
+        super.onDestroy();
+    }
 
     public static void clearHistory() {
         HistoryActivity.arrayList.clear();
