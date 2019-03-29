@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Double sinCosTanPrivate() {
         String giaTri = Calculator.sResult;
-        if ((Calculator.sResult.length() == 1) || (Calculator.sResult.matches("[-][0-9]"))) {
+        if ((Calculator.sResult.length() == 1) || (Calculator.sResult.matches("[\\-][0-9]"))) {
             return Double.valueOf(Calculator.sResult);
         }
         Double kq = 0.0;
@@ -328,8 +328,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Thuật toán không hỗ trợ chuỗi tính"
                                 + e.getMessage(), Toast.LENGTH_SHORT);
                     }
-
-
                 }
             }
         }
