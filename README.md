@@ -15,17 +15,17 @@ target sdk 28
 
 
 # TASK
-Đối với các chuỗi phép tính không hợp lệ thì phải thông báo là chuỗi tính không hợp lệ
-Đối với phần try catch phải rõ rang và minh bạch hơn
-Try catch về IO
-Try catch trong tính toán
-Try catch tràn số
-Danh sách hiển thị ngược lại(lịch sử mới nhất lên đầu
+//Đối với các chuỗi phép tính không hợp lệ thì phải thông báo là chuỗi tính không hợp lệ
+//Đối với phần try catch phải rõ rang và minh bạch hơn
+//Try catch về IO
+//Try catch trong tính toán
+//Try catch tràn số
+//Danh sách hiển thị ngược lại(lịch sử mới nhất lên đầu
 
 # ERROR:
 //chuyển đổi bàn phím không hiện theo như ý muốn
-Còn điều kiện của dấu chấm và dấu phẩy khi nhập chưa có làm validate nhập xuất
-Khi ở vị trí 0 thì xóa vẫn bị lỗi do điều kiện được xóa là textEdit.length() chứ k phải pos !=0
-Nếu độ dài chuỗi đạt 200 thì không cho nhập nữa
+//Còn điều kiện của dấu chấm và dấu phẩy khi nhập chưa có làm validate nhập xuất
+//Khi ở vị trí 0 thì xóa vẫn bị lỗi do điều kiện được xóa là textEdit.length() chứ k phải pos !=0
+//Nếu độ dài chuỗi đạt 200 thì không cho nhập nữa
 
 #Lưu ý cái nào khắc phục được rồi xin hãy // thôi đừng xóa
