@@ -14,11 +14,13 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
 import android.util.Log;
+
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -27,6 +29,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.NotActiveException;
+import java.io.FileNotFoundException;
+import java.io.InterruptedIOException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,17 +57,27 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickNumber(View view) {
-        Calculator.sTextInput = view.getTag().toString();//Lấy các thuộc tính để gán vào biến tạm
-        Calculator.iPos = textEdit.getSelectionStart();
-        Calculator.sResult = textEdit.getText().toString();
+        try {
+            Calculator.sTextInput = view.getTag().toString();//Lấy các thuộc tính để gán vào biến tạm
+            Calculator.iPos = textEdit.getSelectionStart();
+            Calculator.sResult = textEdit.getText().toString();
 
-        //Validate để chuỗi nhập vào luôn đúng đắn
-        this.validateEditText();
+            if (Calculator.sResult.length() == 200) { //Nếu bằng 200 thì k cho nhập gì nữa hết
+                return;
+            }
 
-        textEdit.setText(Calculator.sResult);
-        Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
-        Selection.setSelection(etext, Calculator.iPos);
-        textEdit.requestFocus();
+            //Validate để chuỗi nhập vào luôn đúng đắn
+            this.validateEditText();
+
+            textEdit.setText(Calculator.sResult);
+            Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
+            Selection.setSelection(etext, Calculator.iPos);
+            textEdit.requestFocus();
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Nhập không thành công"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
+            e.getMessage();
+        }
     }
 
     /**
@@ -72,15 +91,21 @@ public class MainActivity extends AppCompatActivity {
         //Thuật toán là nếu trước đó là số và sau nó là số thì nhập thoải mái
         //Nếu trước nó không phải số thì chỉ được nhập số
         //Nếu sau nó không phải số thì chỉ được nhập số
-        String temp = Calculator.sResult;
-        cacTruongHopDauCuoiChuoi();
-        if (Calculator.sResult != temp) {
-            return;
-        } else {
-            cacTruongHopDacBiet();
+        try {
+            String temp = Calculator.sResult;
+            cacTruongHopDauCuoiChuoi();
             if (Calculator.sResult != temp) {
                 return;
+            } else {
+                cacTruongHopDacBiet();
+                if (Calculator.sResult != temp) {
+                    return;
+                }
             }
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Nhập không hợp lệ"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
+            e.getMessage();
         }
     }
 
@@ -88,49 +113,69 @@ public class MainActivity extends AppCompatActivity {
      * Nhập tiếp ký tự vừa nhấn bên giao diện
      */
     public void nhapTiep() {
-        Calculator.sResult = Calculator.sResult.substring(0, Calculator.iPos) + Calculator.sTextInput +
-                Calculator.sResult.substring(Calculator.iPos, Calculator.sResult.length());
-        if (Calculator.sTextInput.length() == 1) {//Trường hợp nhập 1 số hoặc 1 ký tự tiếp theo
-            Calculator.iPos += 1;
-        } else {//Trường hợp nhập min,max
-            Calculator.iPos += Calculator.sTextInput.length() - 1;
+        try {
+            Calculator.sResult = Calculator.sResult.substring(0, Calculator.iPos) + Calculator.sTextInput +
+                    Calculator.sResult.substring(Calculator.iPos, Calculator.sResult.length());
+            if (Calculator.sTextInput.length() == 1) {//Trường hợp nhập 1 số hoặc 1 ký tự tiếp theo
+                Calculator.iPos += 1;
+            } else {//Trường hợp nhập min,max
+                Calculator.iPos += Calculator.sTextInput.length() - 1;
+            }
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Ký tự vừa ấn không hợp lệ"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
+            e.getMessage();
+
         }
     }
 
 
     public void cacTruongHopDauCuoiChuoi() {
-        //Xử lý validate cho đầu và cuối
-        if (Calculator.iPos != 0) {//chỉ lấy khi nó không phải đầu
-            Calculator.sStart = Calculator.sResult.substring(Calculator.iPos - 1, Calculator.iPos);
-        } else {//Tức là đầu chuỗi phải nhập số rồi
-            if (Calculator.sTextInput.matches(regNum)
-                    || Calculator.sTextInput.matches("[(][)]")
-                    || Calculator.sTextInput.matches(regSinCos)) {
-                nhapTiep();
-                return;
+        try {
+            //Xử lý validate cho đầu và cuối
+            if (Calculator.iPos != 0) {//chỉ lấy khi nó không phải đầu
+                Calculator.sStart = Calculator.sResult.substring(Calculator.iPos - 1, Calculator.iPos);
+            } else {//Tức là đầu chuỗi phải nhập số rồi
+                if (Calculator.sTextInput.matches(regNum)
+                        || Calculator.sTextInput.matches("[(][)]")
+                        || Calculator.sTextInput.matches(regSinCos)) {
+                    nhapTiep();
+                    return;
+                }
             }
-        }
 
 
-        if (Calculator.iPos != Calculator.sResult.length()) {//lấy khi nó không phải cuối
-            Calculator.sEnd = Calculator.sResult.substring(Calculator.iPos, Calculator.iPos + 1);
-            //Log.d("IT1006", "validateEditText: " + Calculator.sStart + "  " + Calculator.sResult);
-        } else {//Nó cuối thì coi trước nó là gì là xong
-            if ((Calculator.sStart.matches(regNum)) && (Calculator.sTextInput.matches(regDau)
-                    || Calculator.sTextInput.matches(regNum))) {
-                //Nếu trước nó là số thì nhập thoải mái nếu không thì chỉ cho nhập số
-                nhapTiep();
-                return;
-            } else if (Calculator.sStart.matches(regDau)
-                    && !Calculator.sTextInput.matches(regDau)) {//+-*/ thì cho nhập thoải mái
-                nhapTiep();
-                return;
-            } else if (Calculator.sStart.matches("[)]")
-                    && Calculator.sTextInput.matches(regDau)) {
-                nhapTiep();
+            if (Calculator.iPos != Calculator.sResult.length()) {//lấy khi nó không phải cuối
+                Calculator.sEnd = Calculator.sResult.substring(Calculator.iPos, Calculator.iPos + 1);
+                //Log.d("IT1006", "validateEditText: " + Calculator.sStart + "  " + Calculator.sResult);
+            } else {//Nó cuối thì coi trước nó là gì là xong
+                if ((Calculator.sStart.matches(regNum))
+                        && (Calculator.sTextInput.matches(regDau)
+                        || Calculator.sTextInput.matches(regNum)
+                        || Calculator.sTextInput.matches("[.]")
+                        || Calculator.sTextInput.matches("[,]"))) {
+                    //Nếu trước nó là số thì nhập thoải mái nếu không thì chỉ cho nhập số
+                    nhapTiep();
+                    return;
+                } else if (Calculator.sStart.matches(regDau)
+                        && !Calculator.sTextInput.matches(regDau)) {//+-*/ thì cho nhập thoải mái
+                    nhapTiep();
+                    return;
+                } else if (Calculator.sStart.matches("[)]")
+                        && Calculator.sTextInput.matches(regDau)) {
+                    nhapTiep();
+                    return;
+                } else if (Calculator.sStart.matches("[.]")
+                        && Calculator.sTextInput.matches(regNum)) {
+                    nhapTiep();
+                    return;
+                }
                 return;
             }
-            return;
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Không xác định được vị tí con trỏ"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
+            e.getMessage();
         }
     }
 
@@ -138,7 +183,9 @@ public class MainActivity extends AppCompatActivity {
         //Các trường hợp đặc biệt
         if (Calculator.sStart.matches(regNum)) {
             if (Calculator.sTextInput.matches(regDau)
-                    || Calculator.sTextInput.matches(regNum)) {
+                    || Calculator.sTextInput.matches(regNum)
+                    || Calculator.sTextInput.matches("[.]")
+                    || Calculator.sTextInput.matches("[,]")) {
                 nhapTiep();
                 return;
             }
@@ -160,6 +207,11 @@ public class MainActivity extends AppCompatActivity {
                 nhapTiep();
                 return;
             }
+        } else if (Calculator.sStart.matches("[.]")) {
+            if (Calculator.sTextInput.matches(regNum)) {
+                nhapTiep();
+                return;
+            }
         }
     }
 
@@ -171,9 +223,14 @@ public class MainActivity extends AppCompatActivity {
 
         //trước khi tính toán cho lưu nhẹ để làm lịch sử cái nhé:
         String chuoiTinh = String.valueOf(textEdit.getText());
-
-        kq = sinCosTanPrivate();
-
+        try {
+            kq = sinCosTanPrivate();
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Tính riêng sin cos tan"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
+            e.getMessage();
+        }
+        Log.v("IT1006", Double.toString(kq));
         //Xử lý kq.string đã mới in ra;
         xuLyChuoiInRa(Double.toString(kq));
 
@@ -196,14 +253,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void xuLyChuoiInRa(String kq) {
-        if (kq.indexOf(".") != -1) {
-            //Nếu chuỗi cuối là .0 thì xóa nó đi thôi
-            if (kq.endsWith(".0")) {
-                kq = kq.substring(0, kq.length() - 2);
+        try {
+            if (kq.indexOf(".") != -1) {
+                //Nếu chuỗi cuối là .0 thì xóa nó đi thôi
+                if (kq.endsWith(".0")) {
+                    kq = kq.substring(0, kq.length() - 2);
+                }
             }
+            Calculator.sResult = kq;
+            Calculator.iPos = Calculator.sResult.length();
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Xử lý chuỗi in ra thất bại!"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
         }
-        Calculator.sResult = kq;
-        Calculator.iPos = Calculator.sResult.length();
     }
 
     public boolean kiemTraTonTaiSinCos(String giaTri) {
@@ -223,6 +285,9 @@ public class MainActivity extends AppCompatActivity {
 
     public Double sinCosTanPrivate() {
         String giaTri = Calculator.sResult;
+        if (Calculator.sResult.length() == 1) {
+            return Double.valueOf(Calculator.sResult);
+        }
         Double kq = 0.0;
         //Dùng thuật toán của thanh niên Công tính hết giá trị trong dấu ngoặc của sin.
         //Kiểm tra nó tồn tại bằng kiểm tra phần tử sin() cos(), tan(), min(), max(), log()
@@ -233,11 +298,6 @@ public class MainActivity extends AppCompatActivity {
         //Tính sau đó lại ghép lại vào chuỗi(thay thế sqr(...) thành một giá trị và 2 dấu bao lại như(value)
         //Tiếp tục như thế cho đến khi không thấy
         //thì thoát ra và trả chuỗi này thành result và gọi hàm tính thêm một lần nữa
-//
-//        while (kiemTraTonTaiSinCos(giaTri)) {
-//
-//        }
-
         if (giaTri.charAt(1) == 's' && giaTri.length() == 7) {
             String giatritam = "";
             giatritam += giaTri.charAt(4);
@@ -261,8 +321,15 @@ public class MainActivity extends AppCompatActivity {
                     Operation1 tinhToan = new Operation1(Double.parseDouble(giatritam));
                     kq = tinhToan.TinhTan();
                 } else {
-                    OtherFuntion ketqua = new OtherFuntion();
-                    kq = ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
+                    try {
+                        OtherFuntion ketqua = new OtherFuntion();
+                        kq = ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "Thuật toán không hỗ trợ chuỗi tính"
+                                + e.getMessage(), Toast.LENGTH_SHORT);
+                    }
+
+
                 }
             }
         }
@@ -313,6 +380,8 @@ public class MainActivity extends AppCompatActivity {
             loadHistory();
         } catch (IOException e) {
             Log.d("IT1006", "onCreate:");
+            Toast.makeText(MainActivity.this, "Load Lịch sử thât bại!"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
             e.printStackTrace();
         }
 
@@ -359,31 +428,39 @@ public class MainActivity extends AppCompatActivity {
         Calculator.iPos = textEdit.getSelectionStart();
         Calculator.sResult = textEdit.getText().toString();
 
-        if (Calculator.sResult.length() != 0) {
-            //Xóa 1 chuỗi ký tự là các hàm min, max,....
-            String reg = "\\w{3,4}[(]";
-            if (Calculator.iPos > 4 &&
-                    Calculator.sResult.substring(Calculator.iPos - 4, Calculator.iPos).matches(reg)) {
-                //Trường hợp trước con trỏ là một hàm thì xóa 4 ký tự
-                xoaChuoiKyTu(4);
+        try {
+            if (Calculator.iPos != 0) {
+                //Xóa 1 chuỗi ký tự là các hàm min, max,....
+                String reg = "\\w{3,4}[(]";
+                if (Calculator.iPos > 4 &&
+                        Calculator.sResult.substring(Calculator.iPos - 4, Calculator.iPos).matches(reg)) {
+                    //Trường hợp trước con trỏ là một hàm thì xóa 4 ký tự
+                    xoaChuoiKyTu(4);
 
-                Calculator.iPos -= 4;
+                    Calculator.iPos -= 4;
+                }
+                if (Calculator.iPos > 2 &&
+                        Calculator.sResult.substring(Calculator.iPos - 2, Calculator.iPos) == "()") {
+                    //Xóa Dấu ()
+                    xoaChuoiKyTu(2);
+                    Calculator.iPos -= 2;
+                } else {
+                    //Xóa 1 ký tự ở phía trước con trỏ
+                    //Xóa ở giữa phải cập nhật lại chuỗi, dùng cắt chuỗi nhanh hơn
+                    xoaChuoiKyTu(1);
+                    Calculator.iPos -= 1;
+                }
+                Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
+                textEdit.requestFocus();
+                Calculator.sResult = textEdit.getText().toString();
+                Selection.setSelection(etext, Calculator.iPos);
             }
-            if (Calculator.iPos > 2 &&
-                    Calculator.sResult.substring(Calculator.iPos - 2, Calculator.iPos) == "()") {
-                //Xóa Dấu ()
-                xoaChuoiKyTu(2);
-                Calculator.iPos -= 2;
-            } else {
-                //Xóa 1 ký tự ở phía trước con trỏ
-                //Xóa ở giữa phải cập nhật lại chuỗi, dùng cắt chuỗi nhanh hơn
-                xoaChuoiKyTu(1);
-                Calculator.iPos -= 1;
-            }
-            Editable etext = textEdit.getText(); //cái này Thành sẽ giải thích
-            textEdit.requestFocus();
-            Calculator.sResult = textEdit.getText().toString();
-            Selection.setSelection(etext, Calculator.iPos);
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Xóa thất bại! Chuỗi tính sẽ reset"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
+            Calculator.sResult = "";
+            textEdit.setText(Calculator.sResult);
+            e.getMessage();
         }
 //        if (textCacul.length() != 0) {
 //            int position = textCacul.length() - 1;
@@ -468,6 +545,7 @@ public class MainActivity extends AppCompatActivity {
         //Đọc từng dòng
         while ((strLine = br.readLine()) != null) {
             HistoryActivity.arrayList.add(strLine);
+
         }
         in.close();
 
@@ -494,6 +572,8 @@ public class MainActivity extends AppCompatActivity {
             }
             fos.close();
         } catch (IOException e) {
+            Toast.makeText(MainActivity.this, "Không thể lưu lịch sử"
+                    + e.getMessage(), Toast.LENGTH_SHORT);
             e.printStackTrace();
         }
     }
