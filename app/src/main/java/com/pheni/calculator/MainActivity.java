@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Double sinCosTanPrivate() {
         String giaTri = Calculator.sResult;
-        if (Calculator.sResult.length() == 1) {
+        if ((Calculator.sResult.length() == 1) || (Calculator.sResult.matches("[-][0-9]"))) {
             return Double.valueOf(Calculator.sResult);
         }
         Double kq = 0.0;
