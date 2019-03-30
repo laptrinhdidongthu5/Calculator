@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             textEdit.requestFocus();
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Nhập không thành công"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+                    + e.getMessage(), Toast.LENGTH_SHORT).show();
             e.getMessage();
         }
     }
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Nhập không hợp lệ"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+                    + e.getMessage(), Toast.LENGTH_SHORT).show();
             e.getMessage();
         }
     }
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Ký tự vừa ấn không hợp lệ"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+                    + e.getMessage(), Toast.LENGTH_SHORT).show();
             e.getMessage();
 
         }
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Không xác định được vị tí con trỏ"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+                    + e.getMessage(), Toast.LENGTH_SHORT).show();
             e.getMessage();
         }
     }
@@ -226,8 +226,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             kq = sinCosTanPrivate();
         } catch (Exception e) {
-            Toast.makeText(MainActivity.this, "Tính riêng sin cos tan"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+            Toast.makeText(MainActivity.this, "Tính riêng sin cos tan bị lỗi rồi"
+                    + e.getMessage(), Toast.LENGTH_LONG).show();
             e.getMessage();
         }
         Log.v("IT1006", Double.toString(kq));
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             Calculator.iPos = Calculator.sResult.length();
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Xử lý chuỗi in ra thất bại!"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+                    + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -325,8 +325,8 @@ public class MainActivity extends AppCompatActivity {
                         OtherFuntion ketqua = new OtherFuntion();
                         kq = ketqua.KyPhapBaLanNguoc(textEdit.getText().toString());
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "Thuật toán không hỗ trợ chuỗi tính"
-                                + e.getMessage(), Toast.LENGTH_SHORT);
+                        Toast.makeText(MainActivity.this, "Thuật toán không hỗ trợ chuỗi tính trên !!! Becase: "
+                                + e.getMessage() + "KyPhapBaLanNguoc functoin!!!", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -379,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.d("IT1006", "onCreate:");
             Toast.makeText(MainActivity.this, "Load Lịch sử thât bại!"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+                    + e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
@@ -454,8 +454,7 @@ public class MainActivity extends AppCompatActivity {
                 Selection.setSelection(etext, Calculator.iPos);
             }
         } catch (Exception e) {
-            Toast.makeText(MainActivity.this, "Xóa thất bại! Chuỗi tính sẽ reset"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+            Toast.makeText(MainActivity.this, "Xóa thất bại! Chuỗi tính sẽ reset", Toast.LENGTH_SHORT).show();
             Calculator.sResult = "";
             textEdit.setText(Calculator.sResult);
             e.getMessage();
@@ -571,7 +570,7 @@ public class MainActivity extends AppCompatActivity {
             fos.close();
         } catch (IOException e) {
             Toast.makeText(MainActivity.this, "Không thể lưu lịch sử"
-                    + e.getMessage(), Toast.LENGTH_SHORT);
+                    + e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }

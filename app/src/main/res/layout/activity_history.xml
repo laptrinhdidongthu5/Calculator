@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/boders_button_point"
+        android:background="@drawable/keyboard_delete_bg"
         android:text="CLEAR"
         android:textSize="25sp" />
 
