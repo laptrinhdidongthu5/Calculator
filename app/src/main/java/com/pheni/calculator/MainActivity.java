@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public String regNum = "[0-9]";
     public String regDau = "[+\\-*\\/]";
     public String regSinCos = "\\w{3,4}[(][)]";
+    public String regSinCosChar = "[a-z]";
 
     /**
      * event add number and calculator in edittext
@@ -118,8 +119,10 @@ public class MainActivity extends AppCompatActivity {
                     Calculator.sResult.substring(Calculator.iPos, Calculator.sResult.length());
             if (Calculator.sTextInput.length() == 1) {//Trường hợp nhập 1 số hoặc 1 ký tự tiếp theo
                 Calculator.iPos += 1;
-            } else {//Trường hợp nhập min,max
+            } else if (Calculator.sTextInput.matches("[(][)]")) {
                 Calculator.iPos += Calculator.sTextInput.length() - 1;
+            } else {//Trường hợp nhập min,max
+                Calculator.iPos += Calculator.sTextInput.length();
             }
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Ký tự vừa ấn không hợp lệ"
@@ -190,9 +193,10 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         } else if (Calculator.sStart.matches(regDau)) {
-            if (Calculator.sTextInput.matches("[(][)]")
+            if ((Calculator.sTextInput.matches("[(][)]")
                     || Calculator.sTextInput.matches(regSinCos)
                     || Calculator.sTextInput.matches(regNum))
+                    && !Calculator.sTextInput.matches("[.]"))
                 nhapTiep();
             return;
         } else if (Calculator.sStart.matches("[)]")) {
@@ -207,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 nhapTiep();
                 return;
             }
-        } else if (Calculator.sStart.matches("[.]")) {
+        } else if (Calculator.sStart.matches("[.]") || Calculator.sStart.matches(regSinCosChar)) {
             if (Calculator.sTextInput.matches(regNum)) {
                 nhapTiep();
                 return;
@@ -430,14 +434,20 @@ public class MainActivity extends AppCompatActivity {
             if (Calculator.iPos != 0) {
                 //Xóa 1 chuỗi ký tự là các hàm min, max,....
                 String reg = "\\w{3,4}[(]";
+                String regSinCosChar = "\\w{3,4}";
                 if (Calculator.iPos > 4 &&
                         Calculator.sResult.substring(Calculator.iPos - 4, Calculator.iPos).matches(reg)) {
                     //Trường hợp trước con trỏ là một hàm thì xóa 4 ký tự
                     xoaChuoiKyTu(4);
 
                     Calculator.iPos -= 4;
-                }
-                if (Calculator.iPos > 2 &&
+                } else if (Calculator.iPos > 3 &&
+                        Calculator.sResult.substring(Calculator.iPos - 3, Calculator.iPos).matches(regSinCosChar)) {
+                    //Trường hợp trước con trỏ là một hàm thì xóa 4 ký tự
+                    xoaChuoiKyTu(3);
+
+                    Calculator.iPos -= 3;
+                } else if (Calculator.iPos > 2 &&
                         Calculator.sResult.substring(Calculator.iPos - 2, Calculator.iPos) == "()") {
                     //Xóa Dấu ()
                     xoaChuoiKyTu(2);

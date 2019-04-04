@@ -406,7 +406,7 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="inv()"
+                                    android:tag="inv"
                                     android:text="1/x" />
 
                                 <Button
@@ -453,7 +453,7 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="sin()"
+                                    android:tag="sin"
                                     android:text="sin" />
 
                                 <Button
@@ -466,7 +466,7 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="cos()"
+                                    android:tag="cos"
                                     android:text="cos" />
 
                                 <Button
@@ -479,7 +479,7 @@
                                     android:background="@drawable/keyboard_bg"
                                     android:gravity="center"
                                     android:onClick="onClickNumber"
-                                    android:tag="tan()"
+                                    android:tag="tan"
                                     android:text="tan" />
                             </TableRow>
 
