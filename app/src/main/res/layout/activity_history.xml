@@ -4,28 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HistoryActivity"
     android:orientation="vertical"
-    android:weightSum="10">
+    android:weightSum="10"
+    tools:context=".HistoryActivity">
 
     <ListView
         android:id="@+id/listViewHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8.8"
+        android:layout_weight="9"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:autoSizeTextType="uniform"
-        />
+        tools:layout_editor_absoluteY="8dp" />
 
     <Button
         android:id="@+id/btn_clear_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.2"
-        android:background="@drawable/boders_button_point"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/keyboard_delete_bg"
         android:text="CLEAR"
-        android:autoSizeTextType="uniform"/>
+        android:textSize="25sp" />
 
 </LinearLayout>

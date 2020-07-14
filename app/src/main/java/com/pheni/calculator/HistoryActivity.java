@@ -22,11 +22,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    ListView lvHistory;         //để ánh xạ listview ở ACtivi..xml
+    ListView lvHistory;
     public static ArrayList<String> arrayList = new ArrayList<>();
     List<History> listHistory;
     Button btnClearHistory;
@@ -46,16 +48,16 @@ public class HistoryActivity extends AppCompatActivity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
+        float width = dm.widthPixels;
+        float height = dm.heightPixels;
         getWindow().setLayout((int) (width * 1), (int) (height * 1));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.BOTTOM;
-        params.x = 0;
-        params.y = 100;
-
+        params.x = -50;
+        params.y = 180;
+        params.width = (int) width;
+        params.height = (int) height;
         getWindow().setAttributes(params);
 
 
@@ -68,13 +70,22 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
-        lvHistory = (ListView) findViewById(R.id.listViewHistory);
+        //Trước khi in ra thì đảo ngược lại mảng,
+        Collections.reverse(HistoryActivity.arrayList);
 
+        lvHistory = (ListView) findViewById(R.id.listViewHistory);
         ArrayAdapter arrayAdapter = new ArrayAdapter(HistoryActivity.this,
                 android.R.layout.simple_list_item_1, HistoryActivity.arrayList);
         lvHistory.setAdapter(arrayAdapter);
+
     }
 
+    @Override
+    public void onDestroy() {
+        //Trước khi thoát ra thì đảo ngược lại mảng,
+        Collections.reverse(HistoryActivity.arrayList);
+        super.onDestroy();
+    }
 
     public static void clearHistory() {
         HistoryActivity.arrayList.clear();

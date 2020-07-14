@@ -1,43 +1,15 @@
 package com.pheni.calculator;
 
 public class Calculator {
-    public static double dNumFirst = 0;
-    public static double dNumSecond = 0;
-    public static String sResult = "";
-    public static String sChuoiTinh = "";
+    public static int iPos = 0;//vị trí con trỏ
+    public static String sResult = "";//Giá trị tính sau cùng được in ra txt_result
+    public static String sExpression = "";//Chuỗi tính
+    public static String sTextInput = "";//Ký tự hoặc hàm vừa nhập
+    public static String sStart = "";//Phía trước con trỏ
+    public static String sEnd = "";//Phía sau con trỏ
 
     public Calculator() {
+        //Tính sStart and sEnd;
     }
 
-    public static double getdNumFirst() {
-        return dNumFirst;
-    }
-
-    public static void setdNumFirst(double dNumFirst) {
-        Calculator.dNumFirst = dNumFirst;
-    }
-
-    public static double getdNumSecond() {
-        return dNumSecond;
-    }
-
-    public static void setdNumSecond(double dNumSecond) {
-        Calculator.dNumSecond = dNumSecond;
-    }
-
-    public static String getsResult() {
-        return sResult;
-    }
-
-    public static void setdResult(String dResult) {
-        Calculator.sResult = dResult;
-    }
-
-    public static String getsChuoiTinh() {
-        return sChuoiTinh;
-    }
-
-    public static void setsChuoiTinh(String sChuoiTinh) {
-        Calculator.sChuoiTinh = sChuoiTinh;
-    }
 }
